@@ -83,6 +83,8 @@ private:
   void updatePolicy(const LeggedState& state,
                     const unitree::common::Gamepad& gamepad, size_t loop_cnt,
                     double ll_dt);
+  int decimation(double ll_dt) const;
+  std::vector<float> baseVelocityCommand(const unitree::common::Gamepad& gamepad) const;
   const ObsTerm& getObsTermByName(const std::string& name) const;
   static ObsOrderSpec parseOrderSpec(const YAML::Node& node);
   static std::vector<size_t> resolveLags(const ObsOrderSpec& spec, size_t length);
@@ -107,6 +109,8 @@ private:
   std::vector<float> stiffness_;
   std::vector<float> damping_;
   std::vector<float> last_action_;
+  // Completed policy inferences since the last reset() (gait_phase k).
+  size_t policy_step_cnt_ = 0;
 
   std::unordered_map<std::string, Processor> commands_;
   std::unordered_map<std::string, Processor> actions_;

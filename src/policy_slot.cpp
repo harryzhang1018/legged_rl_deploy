@@ -122,6 +122,7 @@ void PolicySlot::reset(const LeggedState& state) {
   std::fill(obs_now_.begin(), obs_now_.end(), 0.0f);
   for (auto& now : term_now_) std::fill(now.begin(), now.end(), 0.0f);
   for (auto& hist : term_hist_) hist.clear();
+  policy_step_cnt_ = 0;
   has_valid_output_ = false;
 
   if (output_buf_.size() != output_dim_) {
@@ -262,6 +263,15 @@ void PolicySlot::calculateObsTerm(ObsTerm& term) {
     } else {
       term.dim = inferred;
     }
+    return;
+  }
+
+  if (term.name == "gait_phase") {
+    if (!term.params["period"] || term.params["period"].as<double>() <= 0.0) {
+      throw std::runtime_error("[PolicySlot:" + name_ +
+                               "] gait_phase requires params.period > 0");
+    }
+    term.dim = 2;
     return;
   }
 
@@ -496,6 +506,24 @@ void PolicySlot::assembleObsFrame(const LeggedState& state,
       v[0] = std::sin(kTwoPi * phase);
       v[1] = std::cos(kTwoPi * phase);
 
+    } else if (term.name == "gait_phase") {
+      // unitree_rl_mjlab phase: k = completed policy steps since reset (mjlab
+      // episode_length_buf), p = fmod(k * step_dt, period) / period in double,
+      // [sin, cos](2*pi*p) in float; zero while ||base_velocity cmd|| < threshold.
+      const std::vector<float> cmd = baseVelocityCommand(gamepad);
+      double cmd_norm_sq = 0.0;
+      for (const float c : cmd) cmd_norm_sq += static_cast<double>(c) * c;
+      const double threshold = term.params["command_threshold"].as<double>(0.1);
+      if (std::sqrt(cmd_norm_sq) >= threshold) {
+        const double period = term.params["period"].as<double>();
+        const double step_dt = decimation(ll_dt) * ll_dt;
+        const float phase = static_cast<float>(
+            std::fmod(static_cast<double>(policy_step_cnt_) * step_dt, period) / period);
+        constexpr float kTwoPi = 6.28318530718f;
+        v[0] = std::sin(kTwoPi * phase);
+        v[1] = std::cos(kTwoPi * phase);
+      }
+
     } else if (term.name == "hop_command") {
       v[0] = term.params["peak_height"].as<float>(0.7f);
 
@@ -548,9 +576,7 @@ void PolicySlot::assembleObsFrame(const LeggedState& state,
       v[2] = static_cast<float>(g[2]);
 
     } else if (term.name == "velocity_commands") {
-      v = {gamepad.ly, -gamepad.lx, -gamepad.rx};
-      auto it = commands_.find("base_velocity");
-      if (it != commands_.end()) it->second.process(v);
+      v = baseVelocityCommand(gamepad);
 
     } else if (term.name == "joint_pos") {
       for (size_t i = 0; i < robot_model_.nJoints(); ++i) {
@@ -646,6 +672,7 @@ void PolicySlot::updatePolicy(const LeggedState& state,
 
   std::vector<float> raw_output(output_dim_, 0.0f);
   policy_runner_->infer(input_buf_.data(), raw_output.data());
+  ++policy_step_cnt_;  // counts every inference, also those rejected below
   for (float v : raw_output) {
     if (!std::isfinite(v)) {
       std::cerr << "[PolicySlot:" << name_
@@ -670,10 +697,22 @@ void PolicySlot::update(const LeggedState& state,
     mimic_source_->onGamepad(gamepad);
   }
 
-  const int decim = std::max(1, static_cast<int>(std::lround(policy_dt_ / ll_dt)));
+  const int decim = decimation(ll_dt);
   if ((loop_cnt % decim) == 0) {
     updatePolicy(state, gamepad, loop_cnt, ll_dt);
   }
+}
+
+int PolicySlot::decimation(double ll_dt) const {
+  return std::max(1, static_cast<int>(std::lround(policy_dt_ / ll_dt)));
+}
+
+std::vector<float> PolicySlot::baseVelocityCommand(
+    const unitree::common::Gamepad& gamepad) const {
+  std::vector<float> v = {gamepad.ly, -gamepad.lx, -gamepad.rx};
+  auto it = commands_.find("base_velocity");
+  if (it != commands_.end()) it->second.process(v);
+  return v;
 }
 
 const PolicySlot::ObsTerm& PolicySlot::getObsTermByName(

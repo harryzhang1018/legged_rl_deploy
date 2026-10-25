@@ -1,0 +1,70 @@
+# lowlevel controller
+llc_config_file:
+  src/unitree_lowlevel/config/go2.yaml
+
+ll_dt: 0.005  # override in unitree_lowlevel (training: sim dt 0.005, decimation 4)
+clip_final_tau: false
+# Training effort limits (go2_constants.py: hip/thigh 23.5, calf 45), motor order FR, FL, RR, RL
+tau_max: [23.5, 23.5, 45.0, 23.5, 23.5, 45.0, 23.5, 23.5, 45.0, 23.5, 23.5, 45.0]
+
+# Training repo: unitree_rl_mjlab 1425b15 (mjlab 1.2.0, rsl_rl_lib 5.0.1), task Unitree-Go2-Flat
+# Run: logs/rsl_rl/go2_velocity/2026-10-22_02-14-16_Unitree-Go2-Flat, final checkpoint model_10000.pt
+# (policy.onnx = the ONNX that mjlab exported at that save, sha256 c58a3494...)
+# Contract source of truth: deploy/robots/go2/config/policy/velocity/v0/params/deploy.yaml + ONNX metadata
+policy:
+  backend: ort
+  # obs normalizer (x - mean) / (std + 0.01) is inside the model; input obs [1,47], output actions [1,12]
+  model_path: src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/policy.onnx
+  input_dim: 47
+  output_dim: 12
+  # velocity_env_cfg.py: sim dt 0.005 x decimation 4
+  policy_dt: 0.02
+  # ONNX joint_names (natural MJCF order): FL, FR, RL, RR -> lowlevel motor order FR, FL, RR, RL
+  joint_ids_map: [3, 4, 5, 0, 1, 2, 9, 10, 11, 6, 7, 8]
+  # go2_constants.py actuators (ONNX joint_stiffness / joint_damping), policy order
+  stiffness: [20.0, 20.0, 40.0, 20.0, 20.0, 40.0, 20.0, 20.0, 40.0, 20.0, 20.0, 40.0]
+  damping: [1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0]
+  commands:
+    # Training observes the raw command (no scale); clip to deploy.yaml command ranges
+    # lin_vel_x [-0.5, 1.0], lin_vel_y [-0.5, 0.5], ang_vel_z [-1.0, 1.0]
+    # (= the training ranges before the iteration-5000 command curriculum; after it training sampled
+    # lin_vel_x [-1, 2], lin_vel_y [-1, 1], ang_vel_z [-1, 1], velocity_env_cfg.py:372-386)
+    base_velocity:
+      process_order: [clip]
+      min: [-0.5, -0.5, -1.0]
+      max: [1.0, 0.5, 1.0]
+  actions:
+    # mjlab/envs/mdp/actions/actions.py: target = raw * 0.25 + default_joint_pos; clip_actions null
+    JointPositionAction:
+      process_order: [scale, offset]
+      scale: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+      # Defaults: FL(-0.1, 0.9, -1.8), FR(0.1, 0.9, -1.8), RL(-0.1, 0.9, -1.8), RR(0.1, 0.9, -1.8)
+      offset: [
+        -0.1, 0.9, -1.8,
+         0.1, 0.9, -1.8,
+        -0.1, 0.9, -1.8,
+         0.1, 0.9, -1.8
+      ]
+  observations:
+    terms:
+      # velocity_env_cfg.py actor terms, in order (47):
+      # base_ang_vel(3), projected_gravity(3), command(3), phase(2), joint_pos(12), joint_vel(12), actions(12)
+      # no clip / scale on any term; noise is training-only
+      base_ang_vel_B:
+      projected_gravity:
+      velocity_commands:
+      # src/tasks/velocity/mdp/observations.py phase: [sin, cos](2 pi (k * 0.02 % 0.6) / 0.6),
+      # k = episode_length_buf; zero while ||command|| < 0.1
+      gait_phase:
+        params: {period: 0.6, command_threshold: 0.1}
+      joint_pos:
+        process_order: [offset]
+        # Subtract default joint positions (mjlab joint_pos_rel, biased=False)
+        offset: [
+          0.1, -0.9, 1.8,
+         -0.1, -0.9, 1.8,
+          0.1, -0.9, 1.8,
+         -0.1, -0.9, 1.8
+        ]
+      joint_vel:
+      last_action:

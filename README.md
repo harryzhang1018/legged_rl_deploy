@@ -50,6 +50,10 @@ policies/
 │   │   └── multi-policies.yaml
 │   ├── unitree_rl_lab/
 │   │   └── velocity/
+│   ├── unitree_rl_mjlab/
+│   │   └── velocity/
+│   ├── nrdlab_base/
+│   │   └── velocity/
 │   └── aba/
 │       └── velocity/
 └── g1/
@@ -82,7 +86,8 @@ Included policy sources referenced by this repo:
 | unitree_rl_lab | [github.com/unitreerobotics/unitree_rl_lab](https://github.com/unitreerobotics/unitree_rl_lab) |
 | My_unitree_go2_gym | [github.com/yusongmin1/My_unitree_go2_gym](https://github.com/yusongmin1/My_unitree_go2_gym) |
 | mjlab | [github.com/mujocolab/mjlab](https://github.com/mujocolab/mjlab) |
-| unitree_rl_mjlab | [github.com/mujocolab/unitree_rl_mjlab](https://github.com/mujocolab/unitree_rl_mjlab) |
+| unitree_rl_mjlab | [github.com/unitreerobotics/unitree_rl_mjlab](https://github.com/unitreerobotics/unitree_rl_mjlab) |
+| rl_sar (`robot_lab` Go2, used as the NRDLab base policy) | [github.com/fan-ziqi/rl_sar](https://github.com/fan-ziqi/rl_sar) |
 
 Some configs in this repo are experiment-specific derivatives or internally retargeted motions.
 
@@ -200,6 +205,48 @@ In practice, the flow is:
 5. The RL policy then takes control
 
 If you are using a multi-policy config, policy switching is handled by the `fsm.policies.*.transitions` entries in the YAML file.
+
+## Simulation: Go2 velocity policies
+
+Two Go2 velocity policies run in [`unitree_mujoco`](https://github.com/Renkunzhao/unitree_mujoco) (Kunzhao Ren's fork) with the same node and gamepad flow as on the robot:
+
+| Config | Policy | Observation | Command clip (vx, vy, wz) |
+| --- | --- | --- | --- |
+| `policies/go2/unitree_rl_mjlab/velocity/config.yaml` | unitree_rl_mjlab `Unitree-Go2-Flat`, 10k iterations | 47, with `gait_phase` | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrdlab_base/velocity/config.yaml` | NRDLab Go2 base policy (rl_sar `robot_lab` Go2) | 45 | [-1, 1] on each axis |
+
+1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
+
+   ```bash
+   git clone https://github.com/Renkunzhao/unitree_mujoco.git src/unitree_mujoco
+   ./src/unitree_lowlevel/scripts/colcon-config.sh <ros-distro> Release
+   ./src/legged_rl_deploy/scripts/get_ort.sh
+   ```
+
+   Then build `legged_rl_deploy` as in [Build](#build).
+
+2. Connect a gamepad. Keep `use_joystick: 1` (the default) in `src/unitree_mujoco/simulate/config.yaml`.
+3. Terminal 1, from the workspace root, start the simulator:
+
+   ```bash
+   source src/unitree_lowlevel/scripts/setup.sh lo <ros-distro>
+   $WORKSPACE/src/unitree_mujoco/simulate/build/unitree_mujoco -r go2 -s scene.xml -i 0 -n lo
+   ```
+
+4. Terminal 2, from the workspace root, start the policy (use the `nrdlab_base` config for the other policy):
+
+   ```bash
+   ./src/legged_rl_deploy/scripts/run.sh lo <ros-distro> ros2 run legged_rl_deploy legged_rl_deploy_node lo \
+     src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml
+   ```
+
+5. Press Enter at the safety prompt. Then `L2 + A` stands the robot up (`FixStand`), and `START` gives control to the policy. The left stick commands vx and vy, and the right stick commands wz. `SELECT` returns to `FixStand`.
+
+Notes:
+
+- `unitree_lowlevel` sets each stick axis to 0 while |value| < 0.5, and it does not rescale larger values. Thus each command axis is 0 or at least 0.5 in magnitude. For `unitree_rl_mjlab`, vy is 0 or ±0.5, and backward vx is -0.5.
+- `gait_phase` (new observation term, unitree_rl_mjlab): `[sin, cos](2 pi fmod(k * step_dt, period) / period)`, where `k` counts the policy steps since `START` and `step_dt = round(policy_dt / ll_dt) * ll_dt` (0.02 s here). It is `[0, 0]` while the norm of the processed `base_velocity` command is below `command_threshold`. Parameters: `params: {period: 0.6, command_threshold: 0.1}`.
+- Each of these two policy folders has a `README.md` with its source and its observation and action contract.
 
 ## Config Notes
 
