@@ -1,0 +1,21 @@
+# Demo profile for the Go2 velocity policies in the real C++ deploy stack (31 s under the policy).
+# t = segment DURATION [s]; vx, vy [m/s], wz [rad/s] = body-frame policy command AFTER the config's
+# commands.base_velocity processor (the driver inverts it; v = [ly, -lx, -rx]).
+#
+# Reachability (gamepad_driver.py --plan-only gives no warnings for these configs):
+#   unitree_rl_mjlab/velocity/config.yaml: [clip] min [-0.5,-0.5,-1] max [1,0.5,1]  -> stick = command
+#   nrdlab_base, nrdlab_finetuned:         [clip] +-1                               -> stick = command
+#   unitree_lowlevel zeroes raw sticks with |s| < 0.5, so only |cmd| in {0} U [0.5, max] is reachable.
+#   This profile therefore uses 0.5 as the smallest magnitude. Every command is inside the
+#   clip ranges of all three configs: vx [-0.5, 1], vy [-0.5, 0.5], wz [-1, 1].
+segments:
+  - {name: stand,        t: 2.0, vx: 0.0,  vy: 0.0,  wz: 0.0}
+  - {name: forward_0.5,  t: 4.0, vx: 0.5,  vy: 0.0,  wz: 0.0}
+  - {name: forward_0.8,  t: 4.0, vx: 0.8,  vy: 0.0,  wz: 0.0}
+  - {name: lateral_+0.5, t: 3.0, vx: 0.0,  vy: 0.5,  wz: 0.0}
+  - {name: lateral_-0.5, t: 3.0, vx: 0.0,  vy: -0.5, wz: 0.0}
+  - {name: turn_+0.8,    t: 3.0, vx: 0.0,  vy: 0.0,  wz: 0.8}
+  - {name: turn_-0.8,    t: 3.0, vx: 0.0,  vy: 0.0,  wz: -0.8}
+  - {name: backward_0.5, t: 3.0, vx: -0.5, vy: 0.0,  wz: 0.0}
+  - {name: fwd+turn,     t: 4.0, vx: 0.6,  vy: 0.0,  wz: 0.6}
+  - {name: stop,         t: 2.0, vx: 0.0,  vy: 0.0,  wz: 0.0}

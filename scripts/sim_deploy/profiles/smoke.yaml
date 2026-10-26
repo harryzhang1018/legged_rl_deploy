@@ -1,0 +1,5 @@
+# Short smoke profile (6 s under the policy): checks the pipeline, not tracking.
+segments:
+  - {name: stand,   t: 2.0}
+  - {name: forward, t: 2.0, vx: 0.5}
+  - {name: stop,    t: 2.0}

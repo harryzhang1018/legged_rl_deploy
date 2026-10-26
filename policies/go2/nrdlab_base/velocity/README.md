@@ -1,6 +1,7 @@
 # Go2 velocity: NRDLab base policy (rl_sar `robot_lab` Go2)
 
-This is the Go2 base policy of the NRDLab Go2 study. It is the rl_sar `robot_lab` Go2 policy, trained in robot_lab v2.1.
+This is the Go2 base policy of the NRDLab Go2 study, before any fine-tuning. It is the rl_sar `robot_lab` Go2 policy, trained in robot_lab v2.1.
+NeDM Study 4 fine-tunes this policy on CRM soil. For its fine-tuned versions, see [`../../nrdlab_finetuned/velocity`](../../nrdlab_finetuned/velocity/README.md).
 How to run it in MuJoCo: see "Simulation: Go2 velocity policies" in the [root README](../../../../README.md).
 
 | File | Content |
@@ -27,7 +28,7 @@ How to run it in MuJoCo: see "Simulation: Go2 velocity policies" in the [root RE
 | Command | Clipped to the trained range [-1, 1] on vx, vy, wz. No scale |
 | Observation (45) | `base_ang_vel_B` x 0.25 (3), `projected_gravity` (3), `velocity_commands` x 1 (3), `joint_pos` - (0, 0.8, -1.5) (12), `joint_vel` x 0.05 (12), `last_action` (12). Each term is clipped to ±100 |
 
-It needs no C++ change: all its observation terms already exist in `PolicySlot`. Another policy with this contract, for example an NRDLab fine-tune of this policy, runs with this config: change `model_path`. For a TorchScript `.pt`, also set `backend: torch` (this needs a LibTorch build, see [LibTorch.md](../../../../LibTorch.md)).
+It needs no C++ change: all its observation terms already exist in `PolicySlot`. Another policy with this contract runs with this config: change `model_path`. The NeDM Study 4 fine-tunes do this (`../../nrdlab_finetuned/velocity`).
 
 ## Check in unitree_mujoco (2026-10-22)
 

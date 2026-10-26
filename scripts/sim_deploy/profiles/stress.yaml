@@ -1,0 +1,15 @@
+# Stress profile (30 s under the policy): top speed, fast turns, combined commands, a reversal.
+# t = segment DURATION [s]; body-frame command AFTER commands.base_velocity (see demo_final.yaml).
+# Every |cmd| is 0 or >= 0.5 (gamepad dead zone) and inside both Go2 velocity configs' clips:
+# unitree_rl_mjlab vx [-0.5, 1], vy [-0.5, 0.5], wz [-1, 1]; nrdlab_base +-1.
+segments:
+  - {name: stand,          t: 2.0}
+  - {name: forward_1.0,    t: 5.0, vx: 1.0}
+  - {name: turn_+1.0,      t: 3.0, wz: 1.0}
+  - {name: turn_-1.0,      t: 3.0, wz: -1.0}
+  - {name: diagonal,       t: 4.0, vx: 0.5, vy: 0.5}
+  - {name: fwd1.0+turn-,   t: 4.0, vx: 1.0, wz: -0.5}
+  - {name: lat-+turn+,     t: 3.0, vy: -0.5, wz: 0.5}
+  - {name: sprint_1.0,     t: 2.0, vx: 1.0}
+  - {name: reverse_-0.5,   t: 2.0, vx: -0.5}
+  - {name: stop,           t: 2.0}

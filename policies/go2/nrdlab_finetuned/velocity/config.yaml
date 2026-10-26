@@ -1,0 +1,73 @@
+# lowlevel controller
+llc_config_file:
+  src/unitree_lowlevel/config/go2.yaml
+
+ll_dt: 0.005  # override in unitree_lowlevel (rl_sar go2 base.yaml: dt 0.005, decimation 4)
+clip_final_tau: false
+# URDF effort limits (NRDLab JOINT_EFFORT_NM), motor order FR, FL, RR, RL
+tau_max: [23.7, 23.7, 45.43, 23.7, 23.7, 45.43, 23.7, 23.7, 45.43, 23.7, 23.7, 45.43]
+
+# NeDM Study 4 fine-tuned Go2 policy: policies/recipe_iteration1000/<run>/policy_ft.pt of the gated
+# Hugging Face dataset ksha23/nedm-study4-go2-crm, exported to policy.onnx by get_policy.py (not in git).
+# It is the NRDLab base policy (../../nrdlab_base/velocity) fine-tuned with PPO in a neural reduced
+# model of the Go2 on CRM soil: same network, same 45 -> 12 contract, so this file is the base
+# config with only model_path changed.
+policy:
+  backend: ort
+  model_path: src/legged_rl_deploy/policies/go2/nrdlab_finetuned/velocity/policy.onnx
+  input_dim: 45
+  output_dim: 12
+  policy_dt: 0.02
+  # Policy joint order = rl_sar joint_names = motor order FR, FL, RR, RL
+  joint_ids_map: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+  # rl_sar rl_kp / rl_kd (NRDLab PD_KP / PD_KD)
+  stiffness: [20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0]
+  damping: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+  commands:
+    # robot_lab v2.1 (8b447f2c) velocity_env_cfg.py CommandsCfg.base_velocity ranges, not overridden for Go2:
+    # lin_vel_x (-1, 1), lin_vel_y (-1, 1), ang_vel_z (-1, 1)
+    base_velocity:
+      process_order: [clip]
+      min: [-1.0, -1.0, -1.0]
+      max: [1.0, 1.0, 1.0]
+  actions:
+    # rl_sar clip_actions +-100, action_scale (0.125, 0.25, 0.25), default_dof_pos (0, 0.8, -1.5)
+    # NRDLab JointTargetAction: default + clamp(raw, -100, 100) * scale
+    JointPositionAction:
+      process_order: [clip, scale, offset]
+      min: -100.0
+      max: 100.0
+      scale: [0.125, 0.25, 0.25, 0.125, 0.25, 0.25, 0.125, 0.25, 0.25, 0.125, 0.25, 0.25]
+      offset: [0.0, 0.8, -1.5, 0.0, 0.8, -1.5, 0.0, 0.8, -1.5, 0.0, 0.8, -1.5]
+  observations:
+    terms:
+      # rl_sar observations [ang_vel, gravity_vec, commands, dof_pos, dof_vel, actions], clip_obs 100
+      # (the whole-vector clip of NRDLab's base_policy_observation, applied per term)
+      base_ang_vel_B:
+        process_order: [scale, clip]
+        scale: 0.25  # ang_vel_scale
+        min: -100.0
+        max: 100.0
+      projected_gravity:
+        process_order: [clip]
+        min: -100.0
+        max: 100.0
+      velocity_commands:
+        process_order: [clip]  # commands_scale (1, 1, 1); not lin_vel_scale 2.0
+        min: -100.0
+        max: 100.0
+      joint_pos:
+        process_order: [offset, clip]  # dof_pos_scale 1.0
+        offset: [0.0, -0.8, 1.5, 0.0, -0.8, 1.5, 0.0, -0.8, 1.5, 0.0, -0.8, 1.5]
+        min: -100.0
+        max: 100.0
+      joint_vel:
+        process_order: [scale, clip]
+        scale: 0.05  # dof_vel_scale
+        min: -100.0
+        max: 100.0
+      last_action:
+        # previous raw output clamped to clip_actions (NRDLab JointTargetAction.last_raw)
+        process_order: [clip]
+        min: -100.0
+        max: 100.0

@@ -54,6 +54,8 @@ policies/
 │   │   └── velocity/
 │   ├── nrdlab_base/
 │   │   └── velocity/
+│   ├── nrdlab_finetuned/
+│   │   └── velocity/
 │   └── aba/
 │       └── velocity/
 └── g1/
@@ -88,6 +90,7 @@ Included policy sources referenced by this repo:
 | mjlab | [github.com/mujocolab/mjlab](https://github.com/mujocolab/mjlab) |
 | unitree_rl_mjlab | [github.com/unitreerobotics/unitree_rl_mjlab](https://github.com/unitreerobotics/unitree_rl_mjlab) |
 | rl_sar (`robot_lab` Go2, used as the NRDLab base policy) | [github.com/fan-ziqi/rl_sar](https://github.com/fan-ziqi/rl_sar) |
+| NeDM Study 4 (fine-tunes of the NRDLab base policy; gated, fetched by `get_policy.py`) | [huggingface.co/datasets/ksha23/nedm-study4-go2-crm](https://huggingface.co/datasets/ksha23/nedm-study4-go2-crm) |
 
 Some configs in this repo are experiment-specific derivatives or internally retargeted motions.
 
@@ -208,12 +211,14 @@ If you are using a multi-policy config, policy switching is handled by the `fsm.
 
 ## Simulation: Go2 velocity policies
 
-Two Go2 velocity policies run in [`unitree_mujoco`](https://github.com/Renkunzhao/unitree_mujoco) (Kunzhao Ren's fork) with the same node and gamepad flow as on the robot:
+These Go2 velocity policies run in [`unitree_mujoco`](https://github.com/Renkunzhao/unitree_mujoco) (Kunzhao Ren's fork) with the same node and gamepad flow as on the robot.
+They, the `gait_phase` term and `scripts/sim_deploy` are in the fork [harryzhang1018/legged_rl_deploy](https://github.com/harryzhang1018/legged_rl_deploy) (`master`): clone it in place of the upstream repo in [Build](#build).
 
 | Config | Policy | Observation | Command clip (vx, vy, wz) |
 | --- | --- | --- | --- |
 | `policies/go2/unitree_rl_mjlab/velocity/config.yaml` | unitree_rl_mjlab `Unitree-Go2-Flat`, 10k iterations | 47, with `gait_phase` | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
-| `policies/go2/nrdlab_base/velocity/config.yaml` | NRDLab Go2 base policy (rl_sar `robot_lab` Go2) | 45 | [-1, 1] on each axis |
+| `policies/go2/nrdlab_base/velocity/config.yaml` | NRDLab Go2 base policy, not fine-tuned (rl_sar `robot_lab` Go2) | 45 | [-1, 1] on each axis |
+| `policies/go2/nrdlab_finetuned/velocity/config.yaml` | NeDM Study 4 fine-tune of the base policy. Gated: get it with `get_policy.py` in that folder | 45 | [-1, 1] on each axis |
 
 1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
 
@@ -233,7 +238,7 @@ Two Go2 velocity policies run in [`unitree_mujoco`](https://github.com/Renkunzha
    $WORKSPACE/src/unitree_mujoco/simulate/build/unitree_mujoco -r go2 -s scene.xml -i 0 -n lo
    ```
 
-4. Terminal 2, from the workspace root, start the policy (use the `nrdlab_base` config for the other policy):
+4. Terminal 2, from the workspace root, start the policy (use another config of the table for another policy):
 
    ```bash
    ./src/legged_rl_deploy/scripts/run.sh lo <ros-distro> ros2 run legged_rl_deploy legged_rl_deploy_node lo \
@@ -242,11 +247,19 @@ Two Go2 velocity policies run in [`unitree_mujoco`](https://github.com/Renkunzha
 
 5. Press Enter at the safety prompt. Then `L2 + A` stands the robot up (`FixStand`), and `START` gives control to the policy. The left stick commands vx and vy, and the right stick commands wz. `SELECT` returns to `FixStand`.
 
+Scripted evaluation, one command (no gamepad; set `use_joystick: 0` first). From the workspace root:
+
+```bash
+./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh
+```
+
+It runs each policy above on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). See [scripts/sim_deploy/README.md](scripts/sim_deploy/README.md).
+
 Notes:
 
 - `unitree_lowlevel` sets each stick axis to 0 while |value| < 0.5, and it does not rescale larger values. Thus each command axis is 0 or at least 0.5 in magnitude. For `unitree_rl_mjlab`, vy is 0 or ±0.5, and backward vx is -0.5.
 - `gait_phase` (new observation term, unitree_rl_mjlab): `[sin, cos](2 pi fmod(k * step_dt, period) / period)`, where `k` counts the policy steps since `START` and `step_dt = round(policy_dt / ll_dt) * ll_dt` (0.02 s here). It is `[0, 0]` while the norm of the processed `base_velocity` command is below `command_threshold`. Parameters: `params: {period: 0.6, command_threshold: 0.1}`.
-- Each of these two policy folders has a `README.md` with its source and its observation and action contract.
+- Each of these policy folders has a `README.md` with its source and its observation and action contract.
 
 ## Config Notes
 

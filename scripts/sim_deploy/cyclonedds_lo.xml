@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CycloneDDS config for the ROS 2 side (rmw_cyclonedds_cpp) of a local unitree_mujoco run.
+  It replaces unitree_lowlevel/scripts/setup.sh's 'sudo ip link set dev lo multicast on'.
+  multicast="default" follows the lo MULTICAST flag, as the simulator's built-in unitree_sdk2
+  config does (interface lo, multicast "default"):
+  * flag off (the default lo): discovery is unicast to 127.0.0.1, with deterministic
+    per-participant ports (ParticipantIndex auto);
+  * flag on (for example after setup.sh): both sides also use multicast discovery.
+-->
+<CycloneDDS xmlns="https://cdds.io/config">
+  <Domain Id="any">
+    <General>
+      <Interfaces>
+        <NetworkInterface name="lo" priority="default" multicast="default"/>
+      </Interfaces>
+    </General>
+    <Discovery>
+      <ParticipantIndex>auto</ParticipantIndex>
+      <MaxAutoParticipantIndex>40</MaxAutoParticipantIndex>
+      <Peers>
+        <Peer address="127.0.0.1"/>
+      </Peers>
+    </Discovery>
+  </Domain>
+</CycloneDDS>
