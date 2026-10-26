@@ -90,7 +90,7 @@ Included policy sources referenced by this repo:
 | mjlab | [github.com/mujocolab/mjlab](https://github.com/mujocolab/mjlab) |
 | unitree_rl_mjlab | [github.com/unitreerobotics/unitree_rl_mjlab](https://github.com/unitreerobotics/unitree_rl_mjlab) |
 | rl_sar (`robot_lab` Go2, used as the NRDLab base policy) | [github.com/fan-ziqi/rl_sar](https://github.com/fan-ziqi/rl_sar) |
-| NeDM Study 4 (fine-tunes of the NRDLab base policy; gated, fetched by `get_policy.py`) | [huggingface.co/datasets/ksha23/nedm-study4-go2-crm](https://huggingface.co/datasets/ksha23/nedm-study4-go2-crm) |
+| NeDM Study 4 (fine-tunes of the NRDLab base policy) | [huggingface.co/datasets/ksha23/nedm-study4-go2-crm](https://huggingface.co/datasets/ksha23/nedm-study4-go2-crm) |
 
 Some configs in this repo are experiment-specific derivatives or internally retargeted motions.
 
@@ -218,7 +218,7 @@ They, the `gait_phase` term and `scripts/sim_deploy` are in the fork [harryzhang
 | --- | --- | --- | --- |
 | `policies/go2/unitree_rl_mjlab/velocity/config.yaml` | unitree_rl_mjlab `Unitree-Go2-Flat`, 10k iterations | 47, with `gait_phase` | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 | `policies/go2/nrdlab_base/velocity/config.yaml` | NRDLab Go2 base policy, not fine-tuned (rl_sar `robot_lab` Go2) | 45 | [-1, 1] on each axis |
-| `policies/go2/nrdlab_finetuned/velocity/config.yaml` | NeDM Study 4 fine-tune of the base policy. Gated: get it with `get_policy.py` in that folder | 45 | [-1, 1] on each axis |
+| `policies/go2/nrdlab_finetuned/velocity/config.yaml` | NeDM Study 4 fine-tune of the base policy (surrogate seed 9) | 45 | [-1, 1] on each axis |
 
 1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
 

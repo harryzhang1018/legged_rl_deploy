@@ -15,7 +15,7 @@ Run it in the workspace's container (`docker exec -it unitree_ws bash`) or a nat
 It runs three Go2 velocity policies on two profiles, then writes `compare.md`:
 - `unitree_rl_mjlab`
 - `nrdlab_base`
-- `nrdlab_finetuned`, if you got it with `policies/go2/nrdlab_finetuned/velocity/get_policy.py`
+- `nrdlab_finetuned`
 
 One run takes about 50 s. To run another config, for example `policies/go2/mjlab/velocity`, give it as `label=<config.yaml>`.
 
@@ -60,7 +60,7 @@ The driver inverts the config's `commands.base_velocity` processor and the stick
 | `recording.npz`, `*.csv` | `/sportmodestate`, `/lowstate`, `/lowcmd`, `/wirelesscontroller` with receive times |
 | `data.csv` | The deploy node's own CSV log |
 | `driver_*.json`, `driver_events.csv` | Stick plan, events, result |
-| `run_info.json`, `policy_source.json` | Config, profile, model path and sha256, git HEAD; the fetch record of a fine-tuned policy |
+| `run_info.json` | Config, profile, model path and sha256, git HEAD |
 | `logs/` | Logs of each process |
 
 Exit codes of `run_mujoco_deploy.sh`: 0 success, 1 setup failure (or another run is active), 2 failed FSM transition or timeout, 3 fall (base z < 0.15 m or tilt > 60°).

@@ -65,7 +65,7 @@ LOGS="$OUT/logs"
 mkdir -p "$LOGS"
 : > "$LOGS/run.log"
 rm -f "$OUT"/{data.csv,recording.npz,sportmodestate.csv,lowstate.csv,lowcmd.csv,wirelesscontroller.csv} \
-  "$OUT"/{driver_plan.json,driver_events.csv,driver_result.json,summary.json,summary.md,policy_source.json}
+  "$OUT"/{driver_plan.json,driver_events.csv,driver_result.json,summary.json,summary.md}
 
 DOMAIN=${SIM_DOMAIN:-0}
 SCENE=${SIM_SCENE:-scene.xml}
@@ -162,10 +162,9 @@ log "config  $CFG"
 log "profile $PROFILE"
 log "out     $OUT"
 log "lo: $(ip -o link show lo 2>/dev/null | grep -o '<[^>]*>')"
-# the model file (first model_path, relative to $WORKSPACE) and its provenance, if any
+# the model file (first model_path, relative to $WORKSPACE)
 MODEL=$(grep -m1 -E '^\s*model_path:' "$CFG" | sed -E 's/^\s*model_path:\s*//; s/\s*#.*$//')
 MODEL_SHA=$( (cd "$WS" && sha256sum "$MODEL" 2>/dev/null) | cut -d' ' -f1)
-[[ -f $WS/$(dirname "$MODEL")/policy_source.json ]] && cp "$WS/$(dirname "$MODEL")/policy_source.json" "$OUT/"
 {
   echo "{"
   echo "  \"config\": \"$CFG\", \"profile\": \"$PROFILE\", \"started\": \"$(date -Iseconds)\","

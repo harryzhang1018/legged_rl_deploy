@@ -6,8 +6,7 @@
 # With no label=config.yaml arguments it runs these Go2 velocity policies of policies/go2/:
 #   unitree_rl_mjlab   unitree_rl_mjlab/velocity/config.yaml
 #   nrdlab_base        nrdlab_base/velocity/config.yaml
-#   nrdlab_finetuned   nrdlab_finetuned/velocity/config.yaml (only if its policy.onnx exists;
-#                      get it with policies/go2/nrdlab_finetuned/velocity/get_policy.py)
+#   nrdlab_finetuned   nrdlab_finetuned/velocity/config.yaml
 # Default profiles: profiles/demo_final.yaml and profiles/stress.yaml; default repeats: 1.
 # -p takes a path, or a name in profiles/ (e.g. -p smoke).
 # Each run is run_mujoco_deploy.sh (same environment overrides, same requirements); the
@@ -44,12 +43,9 @@ OUT=${OUT:-$WS/sim_results/go2_velocity_$(date +%Y%m%d_%H%M%S)}
 
 LABELS=() CONFIGS=()
 if [[ $# -eq 0 ]]; then
-  LABELS=(unitree_rl_mjlab nrdlab_base) CONFIGS=("$POL/unitree_rl_mjlab/velocity/config.yaml" "$POL/nrdlab_base/velocity/config.yaml")
-  if [[ -f $POL/nrdlab_finetuned/velocity/policy.onnx ]]; then
-    LABELS+=(nrdlab_finetuned) CONFIGS+=("$POL/nrdlab_finetuned/velocity/config.yaml")
-  else
-    echo "note: no policies/go2/nrdlab_finetuned/velocity/policy.onnx (see get_policy.py there) -> not run"
-  fi
+  LABELS=(unitree_rl_mjlab nrdlab_base nrdlab_finetuned)
+  CONFIGS=("$POL/unitree_rl_mjlab/velocity/config.yaml" "$POL/nrdlab_base/velocity/config.yaml"
+           "$POL/nrdlab_finetuned/velocity/config.yaml")
 else
   for a in "$@"; do
     [[ $a == *=* ]] || { echo "expected label=config.yaml, got '$a'" >&2; exit 1; }

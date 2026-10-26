@@ -1,4 +1,0 @@
-# Gated by the dataset author: fetched by get_policy.py, not committed
-policy.onnx
-policy_source.json
-.policy.onnx.tmp

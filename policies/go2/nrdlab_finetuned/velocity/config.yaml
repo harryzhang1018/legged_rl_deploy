@@ -7,8 +7,8 @@ clip_final_tau: false
 # URDF effort limits (NRDLab JOINT_EFFORT_NM), motor order FR, FL, RR, RL
 tau_max: [23.7, 23.7, 45.43, 23.7, 23.7, 45.43, 23.7, 23.7, 45.43, 23.7, 23.7, 45.43]
 
-# NeDM Study 4 fine-tuned Go2 policy: policies/recipe_iteration1000/<run>/policy_ft.pt of the gated
-# Hugging Face dataset ksha23/nedm-study4-go2-crm, exported to policy.onnx by get_policy.py (not in git).
+# NeDM Study 4 fine-tuned Go2 policy: policies/recipe_iteration1000/standard_s9/policy_ft.pt of the
+# Hugging Face dataset ksha23/nedm-study4-go2-crm (rev 66caa72b), exported to policy.onnx (see README.md).
 # It is the NRDLab base policy (../../nrdlab_base/velocity) fine-tuned with PPO in a neural reduced
 # model of the Go2 on CRM soil: same network, same 45 -> 12 contract, so this file is the base
 # config with only model_path changed.
