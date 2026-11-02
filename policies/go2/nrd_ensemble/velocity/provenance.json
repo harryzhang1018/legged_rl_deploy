@@ -1,0 +1,28 @@
+{
+  "candidate": "xeS5abc_m175",
+  "study": "uncertainty ensemble idea study",
+  "actor_training": "PPO fine-tuning inside NRD; no direct-Chrono AWR actor updates",
+  "source": {
+    "name": "xeS5abc_m175",
+    "deploy_folder": "/home/harry/go2_sand/nrd_data/eval/policies/xeS5abc_m175",
+    "checkpoint": "/home/harry/go2_sand/nrd_data/arms/x_ens/ppo/xe_XS5abc_s2/model_175.pt",
+    "eligible_rigid": true,
+    "dev120_score": 0.9716,
+    "recipe": "configs/rl/arm_XS5abc.json (S5 + random member per env + ensemble-std penalty w 0.18 + pessimistic shadow falls), 5-member round-3 ensemble (NRD_X_ENS_READY.json), go2_r3, seed 2, it 175",
+    "screen": "HIP xens40 soft+medium, same set as mjlab and v1: falls 1/0 vs mjlab 2/0 (v1 4/0); pooled vx -0.0163 [-0.0247,-0.0091] (-8 %), wz -0.0182 [-0.0269,-0.0103] (-10 %); power x1.00, roll / pitch rate x0.98 / x0.86; screen rule PASS; vs v1 power -10 %",
+    "notes": "Rank 1: the CRM score is tied with m525 (within 0.01), and m175 wins on power. No torque cost on soft soil (peak tau -0.06). Same-start soft |roll| ratio 0.74. ckpt sha256 26e5fb59bdd63d9d, ONNX de957e9e4084dad0, parity ok.",
+    "arm": "x_ens",
+    "onnx_sha256": "de957e9e4084dad02530696c7792365e69b0b0752e4ca9b1b8a7bc1d4f2e796e",
+    "source_root": "/srv/home/hzhang699/go2nrd/arms/codex_resume_20261102/crm/dev40_idea_r1",
+    "role": "NRD-trained actor"
+  },
+  "actor": {
+    "input": 47,
+    "output": 12,
+    "history": 0,
+    "policy_dt": 0.02
+  },
+  "onnx_sha256": "de957e9e4084dad02530696c7792365e69b0b0752e4ca9b1b8a7bc1d4f2e796e",
+  "screen_scope": "Development screen using a fixed balanced subset, with verified archived episodes reused. Not a new held-out final test. AWR excluded. Blended actor lineage is labelled separately.",
+  "source_screen_manifest": "/home/harry/go2_sand/nrd_data/arms/codex_resume/rapid/manifest.json"
+}

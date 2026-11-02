@@ -1,0 +1,26 @@
+{
+  "candidate": "lco_E2_s1_m200",
+  "study": "combo contact-label study",
+  "actor_training": "PPO fine-tuning inside NRD; no direct-Chrono AWR actor updates",
+  "source": {
+    "name": "lco_E2_s1_m200",
+    "deploy_folder": "/home/harry/go2_sand/nrd_data/eval/policies/lco_E2_s1_m200",
+    "checkpoint": "/home/harry/go2_sand/nrd_data/labels/lab_combo/ppo/lco_E2_s1/model_200.pt",
+    "dev120_score": 0.8873,
+    "obs_history": 0,
+    "arm": "combo",
+    "recipe": "E2",
+    "onnx_sha256": "c29d50eec41ddcdcc6d7340ff7a9b296b5b64e330f891689ad0574e20e4f1566",
+    "source_root": "/srv/home/hzhang699/go2nrd/arms/labels_judge/crm/dev40_lab_r1",
+    "role": "NRD-trained actor"
+  },
+  "actor": {
+    "input": 47,
+    "output": 12,
+    "history": 0,
+    "policy_dt": 0.02
+  },
+  "onnx_sha256": "c29d50eec41ddcdcc6d7340ff7a9b296b5b64e330f891689ad0574e20e4f1566",
+  "screen_scope": "Development screen using a fixed balanced subset, with verified archived episodes reused. Not a new held-out final test. AWR excluded. Blended actor lineage is labelled separately.",
+  "source_screen_manifest": "/home/harry/go2_sand/nrd_data/arms/codex_resume/rapid/manifest.json"
+}

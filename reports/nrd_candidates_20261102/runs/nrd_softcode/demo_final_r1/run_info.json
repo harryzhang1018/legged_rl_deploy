@@ -1,0 +1,7 @@
+{
+  "config": "/home/harry/go2_sand/legged_rl_deploy_wt/nrd_candidates_20261102/policies/go2/nrd_softcode/velocity/config.yaml", "profile": "/home/harry/go2_sand/legged_rl_deploy_wt/nrd_candidates_20261102/scripts/sim_deploy/profiles/demo_final.yaml", "started": "2026-11-02T14:01:13-06:00",
+  "model_path": "src/legged_rl_deploy/policies/go2/nrd_softcode/velocity/policy.onnx", "model_sha256": "5d4d546175d852e706a9bc762ea09c0df5cd85e8549b5c619fb8c1ba6bfe4c72",
+  "legged_rl_deploy_head": "4480332",
+  "legged_rl_deploy_dirty_files": 6,
+  "domain": 0, "scene": "scene.xml", "display": "xvfb"
+}

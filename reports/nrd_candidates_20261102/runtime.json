@@ -1,0 +1,29 @@
+{
+  "evaluator_commit": "4480332bbaf94a7c05e4c30fda2a790ba8caed86",
+  "evaluation": "scripts/sim_deploy/eval_go2_velocity.sh, default demo_final + stress, one repeat each",
+  "workspace": "/home/harry/go2_sand/unitree_ws",
+  "raw_results": "/home/harry/go2_sand/results/deploy_mujoco/nrd_candidates_20261102/runs",
+  "deploy_checkout_head": "b38027a288db9551b255d075f49bc3cc071e74e7",
+  "deploy_checkout_note": "Existing local changes were preserved; runtime src/policy_slot.cpp matches evaluator commit. The local header/CMake additions expose a test accessor and test target.",
+  "unitree_mujoco_commit": "84b60a8c8cbc4cb3cb2bd133c736bb797e19f4b0",
+  "unitree_lowlevel_commit": "0909a9917a0d29b6307f1bcacca08097e384cb3a",
+  "binary_sha256": {
+    "legged_rl_deploy_node": "04cc02649799e9681d7891ae734a3fbab1e3ff54e4f8b789f4ffebda0ed322c6",
+    "unitree_mujoco": "5c05826ed8ea6300a69ea3a1db8f4a47fa4d06905b7a90d6330d8736a3b29445"
+  },
+  "script_sha256": {
+    "scripts/sim_deploy/sim_deploy_common.py": "31c0650952526e1e55d1e0fc49e1fa10ff62b25c4aede1b9042bbbaf881225f3",
+    "scripts/sim_deploy/compare.py": "37752c765b41a852b37b7265b73da05c1f3b5b4a9d996528a7f67f2ce809cada",
+    "scripts/sim_deploy/analyze.py": "1461c2bf6f7fab762b51fe913f922e6d14151c98e09a0432662389848ee33c44",
+    "scripts/sim_deploy/recorder.py": "4dc0b4148aecd3aec9aca14dd2b74093ee22d52a4507c83dac34e813c312404c",
+    "scripts/sim_deploy/gamepad_driver.py": "55a6148ba372e09acb8cd63452e92351a2c4407e3c4397db91800f3327713128"
+  },
+  "profile_sha256": {
+    "demo_final.yaml": "a2c5a7d15433a65a6162a4917ea2b74e34c389f924456f62a5f76e19a76a8d0b",
+    "stress.yaml": "c53099c52903dfcce9a1eeb75e4c7820e0ce2fe4d97412276ee0fd5f61ccf1b9"
+  },
+  "scene": "go2/scene.xml; original rigid terrain parameters",
+  "fall_rule": "base_link z < 0.15 m OR total tilt > 60 deg (unchanged sim_deploy rule)",
+  "analysis_settle_s": 1.0,
+  "hardware_run": false
+}
