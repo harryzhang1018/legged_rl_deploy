@@ -262,7 +262,7 @@ Scripted evaluation, one command (no gamepad; set `use_joystick: 0` first). From
 ./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh
 ```
 
-The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the three NRD candidates against their mjlab initialization, use the explicit-label command in [scripts/sim_deploy/README.md](scripts/sim_deploy/README.md#nrd-candidates). Their results and model identities are saved in [reports/nrd_candidates_20261102](reports/nrd_candidates_20261102/README.md).
+The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the three NRD candidates against their mjlab initialization, use the explicit-label command in [scripts/sim_deploy/README.md](scripts/sim_deploy/README.md#nrd-candidates). Results and model identities are documented in each candidate's policy README.
 
 Notes:
 

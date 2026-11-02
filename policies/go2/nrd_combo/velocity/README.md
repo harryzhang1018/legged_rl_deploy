@@ -20,6 +20,22 @@ Only `policy.model_path` differs in the parsed config.
 
 ONNX SHA256: `c29d50eec41ddcdcc6d7340ff7a9b296b5b64e330f891689ad0574e20e4f1566`.
 
-See [evaluation and reproduction](../../../../reports/nrd_candidates_20261102/README.md)
-for the real C++ deploy-stack MuJoCo runs and the earlier CRM development screen.
-This is a simulation candidate, with no hardware validation.
+## Check in unitree_mujoco (2026-11-02)
+
+This actor and `unitree_rl_mjlab` ran through the real C++ deploy stack on flat
+`go2/scene.xml` ground using `scripts/sim_deploy`: one `demo_final` run (31 s)
+and one `stress` run (30 s) per policy. Both policies completed both profiles
+without a fall; real-time factors were approximately 1.0.
+
+| Policy | MAE vx / vy / wz, demo | MAE vx / vy / wz, stress | Peak torque hip / thigh / calf, stress [N m] | Power demo / stress [W] |
+|---|---|---|---|---|
+| `unitree_rl_mjlab` | 0.083 / 0.060 / 0.125 | 0.096 / 0.073 / 0.143 | 8.1 / 17.9 / 27.5 | 18.5 / 29.7 |
+| `nrd_combo` | 0.078 / 0.058 / 0.121 | 0.084 / 0.071 / 0.136 | 7.5 / 17.2 / 26.2 | 19.3 / 30.9 |
+
+MAE is mean absolute tracking error (vx/vy in m/s, wz in rad/s), excluding the
+first second of each segment; lower is better. Tracking MAE decreases on all three axes in both profiles, with about 4% higher mechanical power.
+
+Reproduce with the explicit-label command in
+[scripts/sim_deploy](../../../../scripts/sim_deploy/README.md#nrd-candidates).
+One repeat per profile is a deployment check, not a statistically reliable ranking
+or hardware validation. The earlier CRM screen is a separate simulation protocol.

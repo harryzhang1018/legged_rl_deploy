@@ -46,8 +46,9 @@ This runs both default profiles once: eight runs in total. The candidates have t
 same observation, action, gains, command processing and timing as the reference;
 only the actor weights differ. All three were optimized inside NRD, with no stacked
 actor history and no direct-Chrono AWR actor updates. Their source checkpoints and
-ONNX hashes are in each policy folder. See the [saved evaluation](../../reports/nrd_candidates_20261102/README.md)
-for results and the distinction between this rigid MuJoCo check and CRM screening.
+ONNX hashes and concise MuJoCo results are in each policy folder's README.
+Full run outputs are written to the chosen evaluation output directory.
+The rigid MuJoCo deployment check and earlier CRM development screen use separate protocols.
 
 ## Before the first run
 
