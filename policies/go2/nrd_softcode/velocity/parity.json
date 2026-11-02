@@ -1,0 +1,51 @@
+{
+ "folder": "/home/harry/go2_sand/nrd_data/eval/policies/xsc_XSb_m175",
+ "checkpoint": {
+  "file": "/home/harry/go2_sand/nrd_data/arms/x_softcode/ppo/xsc_XSb_s2/model_175.pt",
+  "sha256": "12db04db012cb2df74e7826073e4a6328c667a402f16f89821235db21a3a48ac",
+  "size_bytes": 4747033,
+  "iteration": 175,
+  "common_step_counter": null,
+  "actor_normaliser_count": 983138304,
+  "std": [
+   0.12242423743009567,
+   0.1246950700879097,
+   0.11952788382768631,
+   0.12017150223255157,
+   0.12324219197034836,
+   0.12458021193742752,
+   0.12169808149337769,
+   0.1362486034631729,
+   0.1225421205163002,
+   0.12967714667320251,
+   0.1136741191148758,
+   0.1279691755771637
+  ]
+ },
+ "shard": "/home/harry/go2_sand/nrd_data/raw/rigid_test/rigid_test_s0000.npz",
+ "rows": 4000,
+ "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+ "families": {
+  "difficult": 2352,
+  "nominal": 1648
+ },
+ "obs_rebuilt_vs_recorded": {
+  "base_ang_vel": 9.5367431640625e-07,
+  "projected_gravity": 8.940696716308594e-08,
+  "command": 0.0,
+  "phase": 2.2530555725097656e-05,
+  "joint_pos": 0.0,
+  "joint_vel": 0.0,
+  "last_action": 0.0
+ },
+ "max_abs": {
+  "onnx_vs_torch": 1.9073486328125e-06,
+  "deploy_vs_torch_on_recorded_obs": 6.367266178131104e-05,
+  "deploy_vs_onnx_on_recorded_obs": 6.394088268280029e-05,
+  "onnx_vs_reference_onnx": 0.601481482386589,
+  "deploy_vs_recorded_raw": 0.6014812141656876,
+  "torch_vs_recorded_raw": 0.6014819592237473
+ },
+ "action_abs_max": 6.292258262634277,
+ "ok": true
+}

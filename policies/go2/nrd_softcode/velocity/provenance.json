@@ -1,0 +1,28 @@
+{
+  "candidate": "xsc_XSb_m175",
+  "study": "pessimistic soil-code idea study",
+  "actor_training": "PPO fine-tuning inside NRD; no direct-Chrono AWR actor updates",
+  "source": {
+    "name": "xsc_XSb_m175",
+    "deploy_folder": "/home/harry/go2_sand/nrd_data/eval/policies/xsc_XSb_m175",
+    "checkpoint": "/home/harry/go2_sand/nrd_data/arms/x_softcode/ppo/xsc_XSb_s2/model_175.pt",
+    "eligible_rigid": true,
+    "dev120_score": 0.9902,
+    "recipe": "configs/rl/arm_XSb.json (arm S5 + env.ground_code soft_shift, power 3, prob 1) on branch arm/x_softcode; NRD pair ftR3_B_s61/s62, data go2_r3, init mjlab model_10000.pt, seed 2, iteration 175. AMD copy /work1/dannegrut/harry/go2nrd_ideas/x_softcode/runs/ppo/xsc_XSb_s2/model_175.pt. Checkpoint sha256 12db04db012cb2df, ONNX sha256 5d4d546175d852e7, parity ok",
+    "screen": "HIP (MI210, md5 600414ef1296c505), own suites xsc40 + xsc40b, mjlab and v1 paired in the same set. xsc40 soft / medium / firm falls 1 / 0 / 0 (mjlab 4 / 0 / 0, v1 9 / 0 / not run); xsc40b soft 2 (mjlab 1, v1 7). Over 80 soft paths 3 vs mjlab 5: discordant 3 / 1, sign p 0.63, so this is a tie, not a gain. v1 16 and v2 10 on the same paths. Soft vx -5 % and -8 % (both CI < 0). Medium vx +5.9 % and firm vx +9.3 % (both CI > 0). Pooled over 3 levels: vx +0.0006 [-0.0026, +0.0038], fails; wz -0.0059 [-0.0102, -0.0016], passes. Power x1.03, roll rate x1.05, pitch rate x0.93. Build: falls_ok and smooth_ok on xsc40.",
+    "notes": "Rank 1. The only checkpoint of any run with fewer soft falls than mjlab on xsc40. It does not hold on xsc40b, so there is no gain over mjlab outside the noise. It is much safer than v1 and v2 on HIP. Its gait is slower and leans more (mean |roll| +25 % to +48 % on all levels). It will probably fail the joint rule's pooled vx term.",
+    "arm": "x_softcode",
+    "onnx_sha256": "5d4d546175d852e706a9bc762ea09c0df5cd85e8549b5c619fb8c1ba6bfe4c72",
+    "source_root": "/srv/home/hzhang699/go2nrd/arms/codex_resume_20261102/crm/dev40_idea_r1",
+    "role": "NRD-trained actor"
+  },
+  "actor": {
+    "input": 47,
+    "output": 12,
+    "history": 0,
+    "policy_dt": 0.02
+  },
+  "onnx_sha256": "5d4d546175d852e706a9bc762ea09c0df5cd85e8549b5c619fb8c1ba6bfe4c72",
+  "screen_scope": "Development screen using a fixed balanced subset, with verified archived episodes reused. Not a new held-out final test. AWR excluded. Blended actor lineage is labelled separately.",
+  "source_screen_manifest": "/home/harry/go2_sand/nrd_data/arms/codex_resume/rapid/manifest.json"
+}

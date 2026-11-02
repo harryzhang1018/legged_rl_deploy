@@ -1,0 +1,162 @@
+{
+ "exporter": "go2nrd.eval.export_onnx",
+ "method": "state_dict (MjlabActor strict load, torch.onnx.export opset 18, dynamo=False, static [1, 47]; metadata copied from the reference, run_path replaced)",
+ "checkpoint": {
+  "file": "/home/harry/go2_sand/nrd_data/arms/x_softcode/ppo/xsc_XSb_s2/model_175.pt",
+  "sha256": "12db04db012cb2df74e7826073e4a6328c667a402f16f89821235db21a3a48ac",
+  "size_bytes": 4747033,
+  "iteration": 175,
+  "common_step_counter": null,
+  "actor_normaliser_count": 983138304,
+  "std": [
+   0.12242423743009567,
+   0.1246950700879097,
+   0.11952788382768631,
+   0.12017150223255157,
+   0.12324219197034836,
+   0.12458021193742752,
+   0.12169808149337769,
+   0.1362486034631729,
+   0.1225421205163002,
+   0.12967714667320251,
+   0.1136741191148758,
+   0.1279691755771637
+  ]
+ },
+ "run_path": "xsc_XSb_s2",
+ "exported_at": "2026-11-01T13:54:42",
+ "python": "/home/harry/miniconda3/envs/go2eval/bin/python",
+ "versions": {
+  "torch": "2.12.0+cu130",
+  "onnx": "1.22.0",
+  "numpy": "2.4.6"
+ },
+ "reference": {
+  "file": "/home/harry/go2_sand/legged_rl_deploy_push/policies/go2/unitree_rl_mjlab/velocity/policy.onnx",
+  "sha256": "c58a3494b22604b5aa67640ec6ebabe0c6c277d85b072dc9e76c3191e2dfdd45",
+  "is_mjlab_export": true
+ },
+ "onnx": {
+  "file": "/home/harry/go2_sand/nrd_data/eval/policies/xsc_XSb_m175/policy.onnx",
+  "sha256": "5d4d546175d852e706a9bc762ea09c0df5cd85e8549b5c619fb8c1ba6bfe4c72",
+  "size_bytes": 763819,
+  "opset": [
+   18
+  ],
+  "inputs": {
+   "obs": [
+    1,
+    47
+   ]
+  },
+  "outputs": {
+   "actions": [
+    1,
+    12
+   ]
+  },
+  "ops": [
+   "Sub",
+   "Div",
+   "Gemm",
+   "Elu",
+   "Gemm",
+   "Elu",
+   "Gemm",
+   "Elu",
+   "Gemm"
+  ],
+  "initializers": {
+   "obs_normalizer._mean": [
+    1,
+    47
+   ],
+   "mlp.0.weight": [
+    512,
+    47
+   ],
+   "mlp.0.bias": [
+    512
+   ],
+   "mlp.2.weight": [
+    256,
+    512
+   ],
+   "mlp.2.bias": [
+    256
+   ],
+   "mlp.4.weight": [
+    128,
+    256
+   ],
+   "mlp.4.bias": [
+    128
+   ],
+   "mlp.6.weight": [
+    12,
+    128
+   ],
+   "mlp.6.bias": [
+    12
+   ],
+   "onnx::Div_25": [
+    1,
+    47
+   ]
+  },
+  "dtypes": {
+   "obs": 1,
+   "actions": 1
+  },
+  "external_data": false,
+  "metadata": {
+   "run_path": "xsc_XSb_s2",
+   "joint_names": "FL_hip_joint,FL_thigh_joint,FL_calf_joint,FR_hip_joint,FR_thigh_joint,FR_calf_joint,RL_hip_joint,RL_thigh_joint,RL_calf_joint,RR_hip_joint,RR_thigh_joint,RR_calf_joint",
+   "joint_stiffness": "20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000",
+   "joint_damping": "1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000",
+   "default_joint_pos": "-0.100,0.900,-1.800,0.100,0.900,-1.800,-0.100,0.900,-1.800,0.100,0.900,-1.800",
+   "command_names": "twist",
+   "observation_names": "base_ang_vel,projected_gravity,command,phase,joint_pos,joint_vel,actions",
+   "action_scale": "0.25"
+  },
+  "ir_version": 8
+ },
+ "structure": {
+  "checks": {
+   "inputs": true,
+   "outputs": true,
+   "dtypes": true,
+   "opset": true,
+   "ops": true,
+   "initializer_shapes": true,
+   "initializer_names": true,
+   "metadata_keys": true,
+   "metadata_fixed_values": true,
+   "single_file": true
+  },
+  "ok": true
+ },
+ "verification": {
+  "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+  "n_per_set": {
+   "random": 1000,
+   "realistic": 1000,
+   "recorded": 2048
+  },
+  "seed": 0,
+  "max_abs_diff": {
+   "random": 7.62939453125e-06,
+   "random/max_abs_action": 27.36638069152832,
+   "realistic": 1.6689300537109375e-06,
+   "realistic/max_abs_action": 7.9567670822143555,
+   "recorded": 1.9073486328125e-06,
+   "recorded/max_abs_action": 7.305882930755615
+  },
+  "max_onnx_vs_torch": 7.62939453125e-06
+ },
+ "config": {
+  "file": "/home/harry/go2_sand/nrd_data/eval/policies/xsc_XSb_m175/config.yaml",
+  "template": "/home/harry/go2_sand/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml",
+  "template_sha256": "1927b1bca6077c0e86813eb7cd54f3237d5f96ebbe4a0c9afd7c4c83a82e1e63"
+ }
+}
