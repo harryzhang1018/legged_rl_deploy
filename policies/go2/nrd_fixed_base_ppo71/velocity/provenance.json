@@ -1,0 +1,124 @@
+{
+  "schema": "fixed_base_candidate_attestation_v1",
+  "files": {
+    "checkpoint": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/ppo/horizon_h50_u13500_s61_p71_diagnostic_v1/model_299.pt",
+      "sha256": "ec906b4b09d1634e8f3d21256decc8d89320492f21e553515d90069244302407"
+    },
+    "ppo_config": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/ppo/horizon_h50_u13500_s61_p71_diagnostic_v1/config.json",
+      "sha256": "5ceaa0bc069a258500b9dcc0524fa7662b0af78b3933788825ffb33ee8b4b93f"
+    },
+    "frozen_audit": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/ppo/horizon_h50_u13500_s61_p71_diagnostic_v1/frozen_audit.json",
+      "sha256": "69a2749d93566568c29c5f00f4f36dc6eec4a4543756a08e0817f6096ddeb4b6"
+    },
+    "promotion": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/studies/fixed_base_20261102/ppo/horizon_policy_v1/h50/promotion_p71.json",
+      "sha256": "2978085d5a470c9458fd2b889f4ed408911a2b74d2917f6ac965180989b0baaa"
+    },
+    "export_record": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/exports/horizon_h50_u13500_s61_p71_diagnostic_v1_i299/policy_export.json",
+      "sha256": "eecc9a04470de0a3ca527946bcf5b0e8bc190ad12e3f19f1bc2adb84383ed929"
+    },
+    "onnx": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/exports/horizon_h50_u13500_s61_p71_diagnostic_v1_i299/policy.onnx",
+      "sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700"
+    },
+    "deploy_config": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/exports/horizon_h50_u13500_s61_p71_diagnostic_v1_i299/config.yaml",
+      "sha256": "2c01f86da46e79fc0ed1ca8e17151e923cd2219c7aed395530932a360791fd08"
+    }
+  },
+  "lineage": {
+    "manifest_sha256": "f1d264dde8e4398607d09a3c4013c2dfe624e8fcef873596880b5ce63376b3f0",
+    "teacher_sha256": "7ee303f98c48044d792c884edeeedacb58142aece8af56de6f0ba58fb6c9723c",
+    "nrd_sha256": "5c33043b55951658d3bc2ccce0f442124218f2a5c294d8ae6a7f8c0affcd5bbe",
+    "promotion_sha256": "2978085d5a470c9458fd2b889f4ed408911a2b74d2917f6ac965180989b0baaa",
+    "arm": "mixed",
+    "budget": "matched",
+    "promotion_purpose": "development_diagnostic",
+    "final_eligible": false,
+    "original47_actor": true,
+    "training": "PPO inside frozen NRD",
+    "fresh_actor_initialization": true,
+    "resume_boundary": "optimizer/actor resume; environments restart from eligible recorded training histories",
+    "start_pool_sha256": "ec5bedc95775de80b9b5429b9bc50b970fb1095b37b2a53b24bbb4fc28a304b5",
+    "start_pool_definition": "Exact whole-parent intersection of registered training rows; identical start filtering and draws remain in the PPO recipe.",
+    "start_pool_source_budgets": [
+      "pilot",
+      "matched"
+    ]
+  },
+  "final_eligible": false,
+  "purpose": "development_diagnostic",
+  "parity_max_abs_error": 9.5367431640625e-06,
+  "candidate": "nrd_fixed_base_ppo71",
+  "packaged_onnx_sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700",
+  "packaged_config_sha256": "c84fba270824991250edeab441d5d01a2d8f50131c12ecf2b3668a9c1301c086",
+  "release_status": "simulation_deployment_candidate",
+  "hardware_tested": false,
+  "release_checks": {
+    "parity_sha256": "038bff20abaa68228ad79c3fbeb735dbba24358e1342b5deeaf944e4356d68c5",
+    "rows": 4000,
+    "ok": true,
+    "onnx_vs_torch_max_abs": 1.9073486328125e-06,
+    "deploy_mirror_vs_torch_max_abs": 6.136298179626465e-05,
+    "tolerance": 0.0001,
+    "parsed_config_diff_from_teacher": [
+      "policy.model_path"
+    ]
+  },
+  "sim_deploy": {
+    "date": "2026-11-03",
+    "scope": "One repeat per profile; simulation deployment check, not hardware qualification",
+    "workspace": "private",
+    "dds_domain": 43,
+    "binary_sha256": {
+      "/home/harry/go2_sand/unitree_ws/install/legged_rl_deploy/lib/legged_rl_deploy/legged_rl_deploy_node": "04cc02649799e9681d7891ae734a3fbab1e3ff54e4f8b789f4ffebda0ed322c6",
+      "/home/harry/go2_sand/unitree_ws/src/unitree_mujoco/simulate/build/unitree_mujoco": "5c05826ed8ea6300a69ea3a1db8f4a47fa4d06905b7a90d6330d8736a3b29445"
+    },
+    "candidate": {
+      "demo_final": {
+        "summary_sha256": "336659f326abeaeb77a3aeb8263f970f02d7f98202d3af9fba573ecbedbdca51",
+        "run_info_sha256": "e6085e5981d9ab6d587c4c2ac3a29076dd2b264b561b7a984465cc2c5b2d5d7a",
+        "driver_plan_sha256": "bab2d981ec08fa0235797c9aeccf4f2620697afa8727bd293276d6d3df3e0f19",
+        "model_sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700",
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "all_selected_telemetry_finite": true
+      },
+      "stress": {
+        "summary_sha256": "da13f5ce4c72280382ee6510f0539ac0769745324767366122073288b72b5cf7",
+        "run_info_sha256": "3343883df0650f99c50ba2396b934bfd19ab62ebfbb06e4ef713af42fa583d07",
+        "driver_plan_sha256": "29de596af62ab0d8b4504dd8521e2fb03e5b3548ce84f127288992f5b9f0acab",
+        "model_sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700",
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "all_selected_telemetry_finite": true
+      }
+    },
+    "teacher": {
+      "demo_final": {
+        "summary_sha256": "56011f95afa2ddca03c20d5f8f651b27d9ee9822219743a10bd7741f3ee056de",
+        "run_info_sha256": "12fc02a71207c1caee8542bec03803655a4983fcc9b7685c478e406b9f6ac4a4",
+        "driver_plan_sha256": "b0f5e86a94458f0507ada0566fd5866f3e0b33c00a76b16cc2a1dc043397f27d",
+        "model_sha256": "c58a3494b22604b5aa67640ec6ebabe0c6c277d85b072dc9e76c3191e2dfdd45",
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "all_selected_telemetry_finite": true
+      },
+      "stress": {
+        "summary_sha256": "28bb47ff701e903e98175bd8faaac987751393d5e635bb09a24c256013f0b61c",
+        "run_info_sha256": "ece5d6f2a924b1bec20d48ab7279370362c508231c47001a716529599ee393a7",
+        "driver_plan_sha256": "13b52c9757affefe1b9ba858a918eb022578c7e1de6f255266d482ecd5853b5e",
+        "model_sha256": "c58a3494b22604b5aa67640ec6ebabe0c6c277d85b072dc9e76c3191e2dfdd45",
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "all_selected_telemetry_finite": true
+      }
+    },
+    "raw_evidence_root": "/home/harry/go2_sand/results/fixed_base_20261103_policy_release_v1/deploy",
+    "shared_csv_and_sim_config_unchanged": true
+  }
+}

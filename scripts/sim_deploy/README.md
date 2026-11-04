@@ -94,3 +94,27 @@ Exit codes of `run_mujoco_deploy.sh`: 0 success, 1 setup failure (or another run
 - `legged_rl_deploy_node` sometimes hangs after it saves its CSV at shutdown. The script then stops it with SIGKILL. The CSV is complete at that time.
 - Velocities are those of the `base_link` origin, rotated into the body frame. They are not the COM velocity.
 - A MuJoCo result is not a hardware result. It finds contract errors (joint order, gains, observation scales) and large sim-to-sim gaps before you go to the robot.
+
+## Fixed-base NRD candidates
+
+Run inside the built workspace/container, as above:
+
+```bash
+export WORKSPACE=/path/to/unitree_ws
+bash "$WORKSPACE/src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh" \
+  -n 1 -p demo_final -p stress \
+  -o "$WORKSPACE/sim_results/fixed_base_nrd_candidates" \
+  unitree_rl_mjlab="$WORKSPACE/src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml" \
+  nrd_fixed_base_ppo71="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_fixed_base_ppo71/velocity/config.yaml" \
+  nrd_fixed_base_ppo72="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_fixed_base_ppo72/velocity/config.yaml"
+```
+
+This checks the original mjlab teacher and two PPO seeds from the same frozen,
+fixed-base-data three-transformer NRD: six runs total. It does not rerun NRD/PPO
+training or the Chrono research evaluation. See each policy README for the fresh
+C++ results, lineage, independent-physics development evidence and limitations.
+Use an owned workspace/output directory and a distinct `SIM_DOMAIN` when sharing a
+host. The 2026-11-03 check used a private workspace (source/install symlinks to the
+existing binaries, private `plot/` and ROS logs), DDS domain 43, and an owned runner
+copy whose only change was the simulator's working directory to the private
+workspace. No shared runtime, physics configuration or policy weights were changed.
