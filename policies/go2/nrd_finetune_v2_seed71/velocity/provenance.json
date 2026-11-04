@@ -53,13 +53,13 @@
   "final_eligible": false,
   "purpose": "development_diagnostic",
   "parity_max_abs_error": 9.5367431640625e-06,
-  "candidate": "nrd_fixed_base_ppo71",
+  "candidate": "nrd_finetune_v2_seed71",
   "packaged_onnx_sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700",
-  "packaged_config_sha256": "c84fba270824991250edeab441d5d01a2d8f50131c12ecf2b3668a9c1301c086",
+  "packaged_config_sha256": "aeac9c1ef8de147f51dedfe37f6e8202035e0282a0135ae36d016b87b753bd4e",
   "release_status": "simulation_deployment_candidate",
   "hardware_tested": false,
   "release_checks": {
-    "parity_sha256": "038bff20abaa68228ad79c3fbeb735dbba24358e1342b5deeaf944e4356d68c5",
+    "parity_sha256": "dc80a2f278249519b5d4618d65730025f855c839ef019d6065cd6160b0780c5f",
     "rows": 4000,
     "ok": true,
     "onnx_vs_torch_max_abs": 1.9073486328125e-06,
@@ -119,6 +119,16 @@
       }
     },
     "raw_evidence_root": "/home/harry/go2_sand/results/fixed_base_20261103_policy_release_v1/deploy",
-    "shared_csv_and_sim_config_unchanged": true
+    "shared_csv_and_sim_config_unchanged": true,
+    "tested_package_alias": "nrd_fixed_base_ppo71"
+  },
+  "package_rename": {
+    "date": "2026-11-04",
+    "from": "nrd_fixed_base_ppo71",
+    "to": "nrd_finetune_v2_seed71",
+    "onnx_bytes_unchanged": true,
+    "control_settings_unchanged": true,
+    "full_sim_deploy_results_preserved_under_original_alias": true,
+    "fresh_parity_rows": 4000
   }
 }

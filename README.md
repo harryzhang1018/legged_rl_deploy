@@ -56,15 +56,9 @@ policies/
 │   │   └── velocity/
 │   ├── nrdlab_finetuned/
 │   │   └── velocity/
-│   ├── nrd_combo/
+│   ├── nrd_finetune_v2_seed71/
 │   │   └── velocity/
-│   ├── nrd_ensemble/
-│   │   └── velocity/
-│   ├── nrd_softcode/
-│   │   └── velocity/
-│   ├── nrd_fixed_base_ppo71/
-│   │   └── velocity/
-│   ├── nrd_fixed_base_ppo72/
+│   ├── nrd_finetune_v2_seed72/
 │   │   └── velocity/
 │   └── aba/
 │       └── velocity/
@@ -229,11 +223,8 @@ They, the `gait_phase` term and `scripts/sim_deploy` are in the fork [harryzhang
 | `policies/go2/unitree_rl_mjlab/velocity/config.yaml` | unitree_rl_mjlab `Unitree-Go2-Flat`, 10k iterations | 47, with `gait_phase` | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 | `policies/go2/nrdlab_base/velocity/config.yaml` | NRDLab Go2 base policy, not fine-tuned (rl_sar `robot_lab` Go2) | 45 | [-1, 1] on each axis |
 | `policies/go2/nrdlab_finetuned/velocity/config.yaml` | NeDM Study 4 fine-tune of the base policy (surrogate seed 9) | 45 | [-1, 1] on each axis |
-| `policies/go2/nrd_combo/velocity/config.yaml` | NRD contact-label candidate `lco_E2_s1_m200` | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
-| `policies/go2/nrd_ensemble/velocity/config.yaml` | NRD uncertainty-ensemble candidate `xeS5abc_m175` | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
-| `policies/go2/nrd_softcode/velocity/config.yaml` | NRD soil-code candidate `xsc_XSb_m175` | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
-| `policies/go2/nrd_fixed_base_ppo71/velocity/config.yaml` | Fixed-base mixed-data 3NN NRD, PPO71 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
-| `policies/go2/nrd_fixed_base_ppo72/velocity/config.yaml` | Same fixed-base NRD, PPO72 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_v2_seed71/velocity/config.yaml` | NRD finetune v2, PPO seed 71 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_v2_seed72/velocity/config.yaml` | NRD finetune v2, PPO seed 72 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 
 1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
 
@@ -268,11 +259,7 @@ Scripted evaluation, one command (no gamepad; set `use_joystick: 0` first). From
 ./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh
 ```
 
-The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the three NRD candidates against their mjlab initialization, use the explicit-label command in [scripts/sim_deploy/README.md](scripts/sim_deploy/README.md#nrd-candidates). Results and model identities are documented in each candidate's policy README.
-
-The [fixed-base NRD candidates](scripts/sim_deploy/README.md#fixed-base-nrd-candidates)
-use only the original teacher’s data for dynamics training. Each policy README
-separates independent research-physics evidence from the C++ deployment check.
+The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the [NRD finetune v2 candidates](scripts/sim_deploy/README.md#nrd-finetune-v2-candidates) against their mjlab initialization, use the explicit-label command there. Results and model identities are documented in each candidate's policy README. Their dynamics model was trained only on data from the original fixed teacher; the deployed actors are PPO-fine-tuned policies.
 
 Notes:
 

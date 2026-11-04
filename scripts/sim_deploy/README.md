@@ -28,28 +28,6 @@ One run takes about 50 s. To run another config, for example `policies/go2/mjlab
 
 One config, one profile: `run_mujoco_deploy.sh <config.yaml> [profile.yaml] [out_dir]`.
 
-## NRD candidates
-
-Compare the three NRD-trained candidates with their `unitree_rl_mjlab` initialization,
-from the workspace root in the container or a native ROS installation:
-
-```bash
-./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh -n 1 \
-  -o sim_results/nrd_candidates \
-  unitree_rl_mjlab=src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml \
-  nrd_combo=src/legged_rl_deploy/policies/go2/nrd_combo/velocity/config.yaml \
-  nrd_ensemble=src/legged_rl_deploy/policies/go2/nrd_ensemble/velocity/config.yaml \
-  nrd_softcode=src/legged_rl_deploy/policies/go2/nrd_softcode/velocity/config.yaml
-```
-
-This runs both default profiles once: eight runs in total. The candidates have the
-same observation, action, gains, command processing and timing as the reference;
-only the actor weights differ. All three were optimized inside NRD, with no stacked
-actor history and no direct-Chrono AWR actor updates. Their source checkpoints and
-ONNX hashes and concise MuJoCo results are in each policy folder's README.
-Full run outputs are written to the chosen evaluation output directory.
-The rigid MuJoCo deployment check and earlier CRM development screen use separate protocols.
-
 ## Before the first run
 
 1. Build the workspace with `unitree_mujoco`. See "Simulation: Go2 velocity policies" in the [root README](../../README.md).
@@ -95,7 +73,7 @@ Exit codes of `run_mujoco_deploy.sh`: 0 success, 1 setup failure (or another run
 - Velocities are those of the `base_link` origin, rotated into the body frame. They are not the COM velocity.
 - A MuJoCo result is not a hardware result. It finds contract errors (joint order, gains, observation scales) and large sim-to-sim gaps before you go to the robot.
 
-## Fixed-base NRD candidates
+## NRD finetune v2 candidates
 
 Run inside the built workspace/container, as above:
 
@@ -103,14 +81,15 @@ Run inside the built workspace/container, as above:
 export WORKSPACE=/path/to/unitree_ws
 bash "$WORKSPACE/src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh" \
   -n 1 -p demo_final -p stress \
-  -o "$WORKSPACE/sim_results/fixed_base_nrd_candidates" \
+  -o "$WORKSPACE/sim_results/nrd_finetune_v2_candidates" \
   unitree_rl_mjlab="$WORKSPACE/src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml" \
-  nrd_fixed_base_ppo71="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_fixed_base_ppo71/velocity/config.yaml" \
-  nrd_fixed_base_ppo72="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_fixed_base_ppo72/velocity/config.yaml"
+  nrd_finetune_v2_seed71="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_v2_seed71/velocity/config.yaml" \
+  nrd_finetune_v2_seed72="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_v2_seed72/velocity/config.yaml"
 ```
 
-This checks the original mjlab teacher and two PPO seeds from the same frozen,
-fixed-base-data three-transformer NRD: six runs total. It does not rerun NRD/PPO
+This checks the original mjlab teacher and two PPO-fine-tuned actors trained in the
+same frozen three-transformer NRD: six runs total. The NRD uses only data from
+the original fixed teacher; the deployed policies are fine-tuned actors. It does not rerun NRD/PPO
 training or the Chrono research evaluation. See each policy README for the fresh
 C++ results, lineage, independent-physics development evidence and limitations.
 Use an owned workspace/output directory and a distinct `SIM_DOMAIN` when sharing a

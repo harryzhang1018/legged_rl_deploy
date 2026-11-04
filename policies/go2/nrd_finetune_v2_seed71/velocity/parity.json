@@ -1,5 +1,5 @@
 {
- "folder": "/home/harry/go2_sand/legged_rl_deploy_wt/fixed_base_candidates_20261103/policies/go2/nrd_fixed_base_ppo71/velocity",
+ "folder": "/home/harry/go2_sand/legged_rl_deploy_wt/fixed_base_candidates_20261103/policies/go2/nrd_finetune_v2_seed71/velocity",
  "checkpoint": {
   "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/ppo/horizon_h50_u13500_s61_p71_diagnostic_v1/model_299.pt",
   "sha256": "ec906b4b09d1634e8f3d21256decc8d89320492f21e553515d90069244302407",
