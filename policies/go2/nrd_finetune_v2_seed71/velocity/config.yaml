@@ -1,4 +1,4 @@
-# NRD candidate: lco_E2_s1_m200 (combo contact-label study).
+# NRD finetune v2 candidate: NRD61 H50, PPO seed 71, iteration 299.
 # Actor fine-tuned in NRD; matched unitree_rl_mjlab deployment contract.
 # lowlevel controller
 llc_config_file:
@@ -16,7 +16,7 @@ tau_max: [23.5, 23.5, 45.0, 23.5, 23.5, 45.0, 23.5, 23.5, 45.0, 23.5, 23.5, 45.0
 policy:
   backend: ort
   # obs normalizer (x - mean) / (std + 0.01) is inside the model; input obs [1,47], output actions [1,12]
-  model_path: src/legged_rl_deploy/policies/go2/nrd_combo/velocity/policy.onnx
+  model_path: src/legged_rl_deploy/policies/go2/nrd_finetune_v2_seed71/velocity/policy.onnx
   input_dim: 47
   output_dim: 12
   # velocity_env_cfg.py: sim dt 0.005 x decimation 4

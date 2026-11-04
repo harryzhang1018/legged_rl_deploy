@@ -2,44 +2,44 @@
  "exporter": "go2nrd.eval.export_onnx",
  "method": "state_dict (MjlabActor strict load, torch.onnx.export opset 18, dynamo=False, static [1, 47]; metadata copied from the reference, run_path replaced)",
  "checkpoint": {
-  "file": "/home/harry/go2_sand/nrd_data/labels/lab_combo/ppo/lco_E2_s1/model_200.pt",
-  "sha256": "2d6573463b0171b564cfa6f2142887f4ebcf3ea6f1634cebbe7d12f11501c214",
-  "size_bytes": 4747033,
-  "iteration": 200,
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/ppo/horizon_h50_u13500_s61_p71_diagnostic_v1/model_299.pt",
+  "sha256": "ec906b4b09d1634e8f3d21256decc8d89320492f21e553515d90069244302407",
+  "size_bytes": 4748185,
+  "iteration": 299,
   "common_step_counter": null,
   "actor_normaliser_count": 983138304,
   "std": [
-   0.10885541886091232,
-   0.10792849212884903,
-   0.10908786207437515,
-   0.1031242087483406,
-   0.1196197047829628,
-   0.10466600954532623,
-   0.10483910143375397,
-   0.11476894468069077,
-   0.10745880007743835,
-   0.10849350690841675,
-   0.1206427589058876,
-   0.11032421886920929
+   0.08694169670343399,
+   0.09508177638053894,
+   0.08900856971740723,
+   0.08906076848506927,
+   0.09328629821538925,
+   0.090354323387146,
+   0.08938974887132645,
+   0.09190335869789124,
+   0.09262857586145401,
+   0.09034454822540283,
+   0.0932556763291359,
+   0.08963785320520401
   ]
  },
- "run_path": "lco_E2_s1",
- "exported_at": "2026-11-01T19:37:50",
- "python": "/home/harry/miniconda3/envs/go2eval/bin/python",
+ "run_path": "horizon_h50_u13500_s61_p71_diagnostic_v1",
+ "exported_at": "2026-11-03T09:48:02",
+ "python": "/home/harry/miniconda3/envs/unitree_rl_mjlab/bin/python",
  "versions": {
-  "torch": "2.12.0+cu130",
-  "onnx": "1.22.0",
+  "torch": "2.14.1+cu130",
+  "onnx": "1.23.2",
   "numpy": "2.4.6"
  },
  "reference": {
-  "file": "/home/harry/go2_sand/legged_rl_deploy_push/policies/go2/unitree_rl_mjlab/velocity/policy.onnx",
+  "file": "/home/harry/go2_sand/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/policy.onnx",
   "sha256": "c58a3494b22604b5aa67640ec6ebabe0c6c277d85b072dc9e76c3191e2dfdd45",
   "is_mjlab_export": true
  },
  "onnx": {
-  "file": "/home/harry/go2_sand/nrd_data/eval/policies/lco_E2_s1_m200/policy.onnx",
-  "sha256": "c29d50eec41ddcdcc6d7340ff7a9b296b5b64e330f891689ad0574e20e4f1566",
-  "size_bytes": 763818,
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/exports/horizon_h50_u13500_s61_p71_diagnostic_v1_i299/policy.onnx",
+  "sha256": "6f26f6fd9837cc8b69f1e5d0004bd18a50937f38f0931d86d8ad4436e2428700",
+  "size_bytes": 763849,
   "opset": [
    18
   ],
@@ -110,7 +110,7 @@
   },
   "external_data": false,
   "metadata": {
-   "run_path": "lco_E2_s1",
+   "run_path": "horizon_h50_u13500_s61_p71_diagnostic_v1",
    "joint_names": "FL_hip_joint,FL_thigh_joint,FL_calf_joint,FR_hip_joint,FR_thigh_joint,FR_calf_joint,RL_hip_joint,RL_thigh_joint,RL_calf_joint,RR_hip_joint,RR_thigh_joint,RR_calf_joint",
    "joint_stiffness": "20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000",
    "joint_damping": "1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000",
@@ -137,7 +137,7 @@
   "ok": true
  },
  "verification": {
-  "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+  "evaluator": "onnx.reference 1.23.2",
   "n_per_set": {
    "random": 1000,
    "realistic": 1000,
@@ -145,17 +145,17 @@
   },
   "seed": 0,
   "max_abs_diff": {
-   "random": 8.58306884765625e-06,
-   "random/max_abs_action": 26.99287986755371,
-   "realistic": 2.384185791015625e-06,
-   "realistic/max_abs_action": 8.470536231994629,
-   "recorded": 1.6689300537109375e-06,
-   "recorded/max_abs_action": 7.584428310394287
+   "random": 9.5367431640625e-06,
+   "random/max_abs_action": 27.09005355834961,
+   "realistic": 1.9073486328125e-06,
+   "realistic/max_abs_action": 7.633752822875977,
+   "recorded": 2.1457672119140625e-06,
+   "recorded/max_abs_action": 6.962717533111572
   },
-  "max_onnx_vs_torch": 8.58306884765625e-06
+  "max_onnx_vs_torch": 9.5367431640625e-06
  },
  "config": {
-  "file": "/home/harry/go2_sand/nrd_data/eval/policies/lco_E2_s1_m200/config.yaml",
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/fixed_base_20261102/exports/horizon_h50_u13500_s61_p71_diagnostic_v1_i299/config.yaml",
   "template": "/home/harry/go2_sand/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml",
   "template_sha256": "1927b1bca6077c0e86813eb7cd54f3237d5f96ebbe4a0c9afd7c4c83a82e1e63"
  }
