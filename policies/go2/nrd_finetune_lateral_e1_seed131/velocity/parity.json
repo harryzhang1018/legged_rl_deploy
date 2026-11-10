@@ -1,0 +1,51 @@
+{
+ "folder": "/home/harry/go2_sand/results/lateral_stuck_20261108_pr_20261109/ws/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_e1_seed131/velocity",
+ "checkpoint": {
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_v5/lateral_stuck_20261108_ppo_v5_E1_s131/model_299.pt",
+  "sha256": "09adde70cdbd353c632fc23ac40d66958e20fd92c40e8f04731cc67361066287",
+  "size_bytes": 4748057,
+  "iteration": 299,
+  "common_step_counter": null,
+  "actor_normaliser_count": 983138304,
+  "std": [
+   0.17057634890079498,
+   0.18063165247440338,
+   0.17848794162273407,
+   0.1699478179216385,
+   0.18442800641059875,
+   0.17686443030834198,
+   0.16943490505218506,
+   0.18115630745887756,
+   0.17909806966781616,
+   0.17176321148872375,
+   0.18111155927181244,
+   0.17953863739967346
+  ]
+ },
+ "shard": "/home/harry/go2_sand/nrd_data/raw/rigid_test/rigid_test_s0000.npz",
+ "rows": 4000,
+ "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+ "families": {
+  "difficult": 2352,
+  "nominal": 1648
+ },
+ "obs_rebuilt_vs_recorded": {
+  "base_ang_vel": 9.5367431640625e-07,
+  "projected_gravity": 8.940696716308594e-08,
+  "command": 0.0,
+  "phase": 2.2530555725097656e-05,
+  "joint_pos": 0.0,
+  "joint_vel": 0.0,
+  "last_action": 0.0
+ },
+ "max_abs": {
+  "onnx_vs_torch": 1.9073486328125e-06,
+  "deploy_vs_torch_on_recorded_obs": 6.605684757232666e-05,
+  "deploy_vs_onnx_on_recorded_obs": 6.611645221710205e-05,
+  "onnx_vs_reference_onnx": 0.9589771628379822,
+  "deploy_vs_recorded_raw": 0.958974301815033,
+  "torch_vs_recorded_raw": 0.9589769244194031
+ },
+ "action_abs_max": 5.662138938903809,
+ "ok": true
+}

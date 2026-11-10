@@ -60,6 +60,10 @@ policies/
 │   │   └── velocity/
 │   ├── nrd_finetune_v2_seed72/
 │   │   └── velocity/
+│   ├── nrd_finetune_lateral_v2n_seed81/
+│   │   └── velocity/
+│   ├── nrd_finetune_lateral_e1_seed131/
+│   │   └── velocity/
 │   └── aba/
 │       └── velocity/
 └── g1/
@@ -225,6 +229,8 @@ They, the `gait_phase` term and `scripts/sim_deploy` are in the fork [harryzhang
 | `policies/go2/nrdlab_finetuned/velocity/config.yaml` | NeDM Study 4 fine-tune of the base policy (surrogate seed 9) | 45 | [-1, 1] on each axis |
 | `policies/go2/nrd_finetune_v2_seed71/velocity/config.yaml` | NRD finetune v2, PPO seed 71 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 | `policies/go2/nrd_finetune_v2_seed72/velocity/config.yaml` | NRD finetune v2, PPO seed 72 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_v2n_seed81/velocity/config.yaml` | NRD lateral finetune V2n, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_e1_seed131/velocity/config.yaml` | NRD lateral finetune E1 (4-NRD ensemble), PPO seed 131 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 
 1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
 
@@ -259,7 +265,7 @@ Scripted evaluation, one command (no gamepad; set `use_joystick: 0` first). From
 ./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh
 ```
 
-The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the [NRD finetune v2 candidates](scripts/sim_deploy/README.md#nrd-finetune-v2-candidates) against their mjlab initialization, use the explicit-label command there. Results and model identities are documented in each candidate's policy README. Their dynamics model was trained only on data from the original fixed teacher; the deployed actors are PPO-fine-tuned policies.
+The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the [NRD finetune v2 candidates](scripts/sim_deploy/README.md#nrd-finetune-v2-candidates) against their mjlab initialization, use the explicit-label command there. Results and model identities are documented in each candidate's policy README. Their dynamics model was trained only on data from the original fixed teacher; the deployed actors are PPO-fine-tuned policies. The two experimental [NRD lateral finetune candidates](scripts/sim_deploy/README.md#nrd-lateral-finetune-candidates) target the lateral foot-drag stall on sand; their READMEs list their Chrono failures (falls on uneven medium sand, soft-sand wrong-way slide, higher power). They are not tested on hardware.
 
 Notes:
 
