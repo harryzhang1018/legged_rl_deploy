@@ -1,0 +1,392 @@
+{
+  "schema": "lateral_candidate_attestation_v1",
+  "candidate": "nrd_finetune_lateral_v2n_seed81",
+  "study_pick": "V2n_s81",
+  "release_status": "experimental_simulation_candidate",
+  "chrono_label": "NOT_CONFIRMED",
+  "hardware_tested": false,
+  "packaged_onnx_sha256": "1419d9722698c23a04b8805dd15f6eb25710e1f11860ffbad0cb1a63159674e9",
+  "packaged_config_sha256": "aac742e496f214464fc6d8797f8a150d466b33339920b4e7241a8490fbe25c9d",
+  "files": {
+    "checkpoint": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81/model_299.pt",
+      "sha256": "cdb54fb5a963a46fd5b1c4369404af6c5574c7abd9f29e5f471331004215ce01"
+    },
+    "ppo_config": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81/config.json",
+      "sha256": "87067a83b5b3b477d447c853b35f334564eb074cca3f5e66995f0f13545bacc0"
+    },
+    "frozen_audit": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81/frozen_audit.json",
+      "sha256": "3941243ebaa7ba391a511a881fcf622e5dcc9b9117586544e7590ab259c68b5c"
+    },
+    "complete": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81/complete.json",
+      "sha256": "aff2effd743033452cb3d633c7582955ae114662dd2718ffbe48558bed206a23"
+    },
+    "export_record": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/exports/lateral_stuck_20261108_ppo_nrdv3_V2_s81_i299/policy_export.json",
+      "sha256": "e238f6b2ca003e5c85fa1ffae0449623e1ca1902925e15c69079b94666b9d92b"
+    },
+    "onnx": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/exports/lateral_stuck_20261108_ppo_nrdv3_V2_s81_i299/policy.onnx",
+      "sha256": "1419d9722698c23a04b8805dd15f6eb25710e1f11860ffbad0cb1a63159674e9"
+    },
+    "source_deploy_config": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/exports/lateral_stuck_20261108_ppo_nrdv3_V2_s81_i299/config.yaml",
+      "sha256": "3cb11d6f4ea5813c766f3aec8a6c2285e7df6e2420a5a80675ac5243d4a9a5ec"
+    },
+    "sim_deploy_config": {
+      "path": "/home/harry/go2_sand/results/lateral_stuck_20261108_rigid_check_sel1/lrd/policies/go2/rigidcheck_V2n_s81/velocity/config.yaml",
+      "sha256": "5de47f0c829896001b57b02a2dc2bd486c914928c1fe9a874ec61dcacca25e2d"
+    },
+    "recipe": {
+      "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/studies/lateral_stuck_20261108/ppo_nrdv3/recipes/v2.json",
+      "sha256": "162b4883c17f3416863b1981a1c9a3a2388f18830cdb5f840822721d17ac4751"
+    }
+  },
+  "lineage": {
+    "study": "lateral_stuck_20261108",
+    "recipe": "v3_V2",
+    "recipe_sha256": "162b4883c17f3416863b1981a1c9a3a2388f18830cdb5f840822721d17ac4751",
+    "ppo_seed": 81,
+    "iterations": 300,
+    "initialization": "unitree_rl_mjlab model_10000.pt (ONNX c58a3494...)",
+    "teacher_sha256": "7ee303f98c48044d792c884edeeedacb58142aece8af56de6f0ba58fb6c9723c",
+    "base_config_sha256": "5ceaa0bc069a258500b9dcc0524fa7662b0af78b3933788825ffb33ee8b4b93f",
+    "nrd_members": [
+      "nrd_v3_FRESH-b_loader.pt"
+    ],
+    "nrd_members_sha256": [
+      "501c9b8da022caf9594ad9cd7c50a7eda1e00424e5d4c9c7c8add65ee788848c"
+    ],
+    "nrd_ensemble_mode": "single",
+    "ood_overlay_sha256": "17d563ae2b18a0a14a6c843d399ef91da22efb16e7f2ab3e5e1d6294318e5a9f",
+    "nrd_frozen_sha256_before_after": [
+      "ca01f9e1e1f0d0082258d16b82fab7068cca32eb5840958b7a2cfdd680923e68",
+      "ca01f9e1e1f0d0082258d16b82fab7068cca32eb5840958b7a2cfdd680923e68"
+    ],
+    "original47_actor": true,
+    "training": "PPO inside frozen NRD",
+    "nrd_training_data": "original fixed teacher only (mjlab rigid + Chrono CRM, incl. lateral_stuck_20261108 base-teacher lateral data); no fine-tuned-policy trajectories",
+    "final_eligible": false
+  },
+  "release_checks": {
+    "parity_sha256": "a1ed902e61fe7d41149c3e739a376987500b530fd960658816bc69fd96ad7053",
+    "rows": 4000,
+    "ok": true,
+    "onnx_vs_torch_max_abs": 1.9073486328125e-06,
+    "deploy_mirror_vs_torch_max_abs": 6.261467933654785e-05,
+    "tolerance": 0.0001,
+    "parsed_config_diff_from_teacher": [
+      "policy.model_path"
+    ],
+    "parsed_config_diff_from_sim_deploy_config": [
+      "policy.model_path"
+    ]
+  },
+  "study_results": {
+    "source": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/studies/lateral_stuck_20261108/selection/package/policies/go2/nrd_lateral_freshb_v2_seed81_experimental/velocity/provenance.json",
+    "source_sha256": "46fc58f61ef5f5026464077a74a26e58042b501ee2a31bc8b3a8c226efb8d8a1",
+    "selection": {
+      "rule_v1": "selection/selection_rule_v1.json (sha256 9d30877c), rank 1 in the new-NRD arm",
+      "rule_v2_info": [
+        "(1) realistic early terminations 4 > same-job teacher 2 + 1",
+        "(2) soft wrong-way holds 2 > teacher 0 + 1"
+      ],
+      "selection_v2_result_sha256": "eb5ea794b87e66302ca5d35da122f6d302775e5c3ec1334d877d0ef8a8a2a401"
+    },
+    "why_this_candidate": "lowest suite_v1 realistic stuck-time ratio of all candidates trained in the nrd_v3 FRESH-b NRD (0.221 in the phase-3c jobs, 0.201 in the phase-4 jobs), lowest suite_v2 G1 ratio of the phase-3c picks (0.214), rigid gate satisfactory, sim_deploy pass",
+    "confirmation_suite": "suite_v2 (held-out)",
+    "confirmation": {
+      "verdict": "NOT_CONFIRMED",
+      "failed_gates": [
+        "G2",
+        "G3",
+        "S1"
+      ],
+      "G1_ratio": 0.21370322530893945,
+      "G1_pairs_better": 9,
+      "G1_cells": {
+        "medium/flat": 0.10746367971609182,
+        "medium/relief": 0.3510024998724555,
+        "firm/relief": 0.15924416971059285
+      },
+      "G1_pass": true,
+      "G2_e1_plus_ratio": 0.3054905490549055,
+      "G2_e1_minus_ratio": 0.10790172642762284,
+      "G2_wrong_way": {
+        "firm|+y": [
+          0,
+          0
+        ],
+        "firm|-y": [
+          0,
+          0
+        ],
+        "medium|+y": [
+          0,
+          0
+        ],
+        "medium|-y": [
+          0,
+          0
+        ],
+        "soft|+y": [
+          1,
+          0
+        ],
+        "soft|-y": [
+          8,
+          0
+        ]
+      },
+      "G2_failed_groups": [
+        "soft|-y"
+      ],
+      "G2_pass": false,
+      "G3_primary_early": [
+        5,
+        0
+      ],
+      "G3_primary_fell": [
+        5,
+        0
+      ],
+      "G3_stress_early": [
+        21,
+        16
+      ],
+      "G3_stress_flag": true,
+      "G3_pass": false,
+      "S1_power_ratio": 1.661465672435877,
+      "S1_action_rate_ratio": 1.4579104176486777,
+      "S1_pass": false,
+      "progress": {
+        "primary|+y": {
+          "progress_ratio": 0.6741414993995094,
+          "wrong_way": 0
+        },
+        "firm|+y": {
+          "progress_ratio": 0.7495917483381699,
+          "wrong_way": 0
+        },
+        "primary|-y": {
+          "progress_ratio": 0.9419864225761027,
+          "wrong_way": 0
+        },
+        "firm|-y": {
+          "progress_ratio": 1.0356080413356814,
+          "wrong_way": 0
+        },
+        "medium|+y": {
+          "progress_ratio": 0.6340163910926849,
+          "wrong_way": 0
+        },
+        "medium|-y": {
+          "progress_ratio": 0.8942383273421419,
+          "wrong_way": 0
+        }
+      },
+      "teacher_progress": {
+        "primary|+y": {
+          "progress_ratio": 0.17421508873322272,
+          "wrong_way": 0
+        },
+        "firm|+y": {
+          "progress_ratio": 0.25644740325125326,
+          "wrong_way": 0
+        },
+        "primary|-y": {
+          "progress_ratio": 0.2112066350868193,
+          "wrong_way": 0
+        },
+        "firm|-y": {
+          "progress_ratio": 0.3702338604916325,
+          "wrong_way": 0
+        },
+        "medium|+y": {
+          "progress_ratio": 0.13309893147420748,
+          "wrong_way": 0
+        },
+        "medium|-y": {
+          "progress_ratio": 0.1316930223844127,
+          "wrong_way": 0
+        }
+      }
+    },
+    "suite_v3": "not run",
+    "rigid_dev120": {
+      "loss_ratio": 0.8543628012333653,
+      "ci95": [
+        0.8357564715338527,
+        0.8735877690724809
+      ],
+      "falls": 0,
+      "teacher_falls": 0,
+      "gate_pass": true,
+      "power_ratio": 1.21742943276248,
+      "power_ci95": [
+        1.2001264098787081,
+        1.2365774876439746
+      ],
+      "action_rate_ratio": 1.1155135500760016,
+      "lateral_family_loss_ratio": 0.6227419578306,
+      "vy_ratio": 0.7517625008752888,
+      "vx_ratio": 0.9879700037124705,
+      "gates_v1": {
+        "G1": true,
+        "G2": "unresolved_insufficient_n",
+        "G3": false,
+        "G3_failed": [
+          "extra/mech_power_w"
+        ]
+      }
+    },
+    "deploy_check_torque_clip_on_same_jobs": {
+      "source": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/studies/lateral_stuck_20261108/deploy_check/results.json",
+      "source_sha256": "355639d48483591b685f1472a80a3de20295c9916e7ffa0928feedf3b1b55cbc",
+      "row": {
+        "realistic_ratio": 0.19649303764827228,
+        "realistic_ratio_r0": 0.18950879320800484,
+        "realistic_ratio_r2": 0.2037700084245998,
+        "realistic_e1": 76.19999999999999,
+        "realistic_e1_teacher": 387.8,
+        "realistic_early": 3,
+        "realistic_fell": 2,
+        "realistic_left_bed": 1,
+        "soft_early": 4,
+        "soft_fell": 4,
+        "soft_left_bed": 0,
+        "wrong_way_soft+y": 0,
+        "wrong_way_soft-y": 2,
+        "wrong_way010_soft+y": 0,
+        "wrong_way010_soft-y": 2,
+        "soft_ratio": 1.0525015441630636,
+        "power_x_medium": 1.5609011045656453,
+        "power_x_firm": 1.481621447447299,
+        "power_x_soft": 0.8063712355214473,
+        "power_w_medium": 40.33344856891905,
+        "action_rate_x_medium": 1.4034391846888847,
+        "action_rate_x_firm": 1.2663622496634785,
+        "realistic_clip_tick_share": 0.00040172674410687294,
+        "realistic_clip_entry_share": 5.6173654896300024e-05,
+        "soft_clip_tick_share": 0.0047886081532354605,
+        "soft_clip_entry_share": 0.0004900622379042138,
+        "realistic_tau_sat_step_share": 0.00040952751058698857,
+        "soft_tau_sat_step_share": 0.004000682332094194,
+        "progress_medium+y": 0.7111304379158444,
+        "progress_medium-y": 0.8654144624819088
+      }
+    }
+  },
+  "sim_deploy": {
+    "scope": "One repeat per profile on flat go2/scene.xml; simulation deployment check, not hardware qualification",
+    "workspace": "private",
+    "dds_domain": 47,
+    "container": "unitree_ws_go2sand",
+    "legged_rl_deploy_head": "696baed70af09aa6577b882294e2bb70d5ff78e0",
+    "runner_patch": "simulator cwd dirname(SIM_BIN) -> private WORKSPACE (as in the 2026-11-03 PR #2 check)",
+    "binary_sha256": {
+      "/home/harry/go2_sand/unitree_ws/install/legged_rl_deploy/lib/legged_rl_deploy/legged_rl_deploy_node": "04cc02649799e9681d7891ae734a3fbab1e3ff54e4f8b789f4ffebda0ed322c6",
+      "/home/harry/go2_sand/unitree_ws/src/unitree_mujoco/simulate/build/unitree_mujoco": "5c05826ed8ea6300a69ea3a1db8f4a47fa4d06905b7a90d6330d8736a3b29445"
+    },
+    "gates": {
+      "D1_no_fall_completed": true,
+      "D2_finite": true,
+      "D3_no_command_warnings": true,
+      "D4_parity_4000": true,
+      "D5_rtf_and_config": true,
+      "all_pass": true
+    },
+    "candidate": {
+      "demo_final": {
+        "summary_sha256": "6b241ce17d420c20f8ca777f0b25e733ad15f9be211a85df8c0ca7c91dd6f265",
+        "driver_plan_sha256": "cb8494fdd88dce2c63dc578666b1bd8fcfdd59308bfc8dfd12e12d8d43a20f4b",
+        "fell": false,
+        "completed": true,
+        "rtf": 0.9999925759654731,
+        "mae_vx_vy_wz": [
+          0.07061069693702013,
+          0.04116957340295721,
+          0.11946390198335842
+        ],
+        "power_w": 22.509971155474833,
+        "target_rate": 1.6155481997642218,
+        "max_tilt_deg": 5.531937819241857,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      },
+      "stress": {
+        "summary_sha256": "171d55bdb62f74a38a468ca14285dc871d957025a7548b03fafe335f21b408d1",
+        "driver_plan_sha256": "18d8ec18b10daf826ee0cebd5a3d038490144ac9e0705c52726b74a3f005ff2d",
+        "fell": false,
+        "completed": true,
+        "rtf": 1.0000356237831831,
+        "mae_vx_vy_wz": [
+          0.0784630009475045,
+          0.05160091447621244,
+          0.13458216086456873
+        ],
+        "power_w": 34.10794792966013,
+        "target_rate": 1.8942253015534027,
+        "max_tilt_deg": 6.981729206228005,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      }
+    },
+    "teacher": {
+      "demo_final": {
+        "summary_sha256": "eba3afd6a14a71f4cde23e676fbfb5a00ff7b25bf97311d62086cda87095a2f1",
+        "driver_plan_sha256": "ceb6446657e49bbb2205f8b800727d4af58f177eeb11ea5755bad30dcd911e36",
+        "fell": false,
+        "completed": true,
+        "rtf": 0.9999669437816127,
+        "mae_vx_vy_wz": [
+          0.08270807355655019,
+          0.059387126707655134,
+          0.12511968727480927
+        ],
+        "power_w": 18.413991664791418,
+        "target_rate": 1.4658206755484466,
+        "max_tilt_deg": 3.8117751023875517,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      },
+      "stress": {
+        "summary_sha256": "3c93bc2afc6623015a477a6168c987dc182ef7e8f1f1274a4d8ae4e52948cab3",
+        "driver_plan_sha256": "403739bcc40cb634059892360582e76bad298dbabb339e907bd5d895dd58cc2f",
+        "fell": false,
+        "completed": true,
+        "rtf": 0.9999820572083492,
+        "mae_vx_vy_wz": [
+          0.0959056097056973,
+          0.07331976079893449,
+          0.14286153716350428
+        ],
+        "power_w": 29.773882328590574,
+        "target_rate": 1.7422472851329218,
+        "max_tilt_deg": 6.293262889379005,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      }
+    },
+    "shared_files_unchanged": true,
+    "original_checkouts_unchanged": true,
+    "raw_evidence_root": "/home/harry/go2_sand/results/lateral_stuck_20261108_rigid_check_sel1",
+    "tested_package_alias": "rigidcheck_V2n_s81"
+  },
+  "package_rename": {
+    "date": "2026-11-09",
+    "from": "rigidcheck_V2n_s81",
+    "to": "nrd_finetune_lateral_v2n_seed81",
+    "onnx_bytes_unchanged": true,
+    "control_settings_unchanged": true,
+    "full_sim_deploy_results_preserved_under_original_alias": true,
+    "fresh_parity_rows": 4000
+  }
+}

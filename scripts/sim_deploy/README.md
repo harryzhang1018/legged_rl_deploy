@@ -97,3 +97,26 @@ host. The 2026-11-03 check used a private workspace (source/install symlinks to 
 existing binaries, private `plot/` and ROS logs), DDS domain 43, and an owned runner
 copy whose only change was the simulator's working directory to the private
 workspace. No shared runtime, physics configuration or policy weights were changed.
+
+## NRD lateral finetune candidates
+
+Run inside the built workspace/container, as above:
+
+```bash
+export WORKSPACE=/path/to/unitree_ws
+bash "$WORKSPACE/src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh" \
+  -n 1 -p demo_final -p stress \
+  -o "$WORKSPACE/sim_results/nrd_finetune_lateral_candidates" \
+  unitree_rl_mjlab="$WORKSPACE/src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml" \
+  nrd_finetune_lateral_v2n_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_v2n_seed81/velocity/config.yaml" \
+  nrd_finetune_lateral_e1_seed131="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_e1_seed131/velocity/config.yaml"
+```
+
+This checks the original mjlab teacher and two experimental PPO-fine-tuned actors of the lateral study: six runs
+total. V2n seed 81 was trained in one retrained frozen NRD; E1 seed 131 used the same recipe in a randomized ensemble
+of four frozen NRDs. All NRDs use only data from the original fixed teacher. It does not rerun NRD/PPO training or the
+Chrono research evaluation. Both actors are labeled NOT_CONFIRMED in Chrono (falls on uneven medium sand, soft-sand
+wrong-way slide, higher power); see each policy README for the C++ results, lineage, Chrono evidence and limits.
+The 2026-11-09 checks used private workspaces as above (DDS domain 47), with the
+packages under their earlier aliases `rigidcheck_V2n_s81` and `rigidcheck_E1_s131`; the ONNX bytes and parsed
+control settings are unchanged.

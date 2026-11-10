@@ -1,0 +1,162 @@
+{
+ "exporter": "go2nrd.eval.export_onnx",
+ "method": "state_dict (MjlabActor strict load, torch.onnx.export opset 18, dynamo=False, static [1, 47]; metadata copied from the reference, run_path replaced)",
+ "checkpoint": {
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81/model_299.pt",
+  "sha256": "cdb54fb5a963a46fd5b1c4369404af6c5574c7abd9f29e5f471331004215ce01",
+  "size_bytes": 4748057,
+  "iteration": 299,
+  "common_step_counter": null,
+  "actor_normaliser_count": 983138304,
+  "std": [
+   0.16925066709518433,
+   0.18509380519390106,
+   0.17369039356708527,
+   0.16756615042686462,
+   0.18278633058071136,
+   0.17658552527427673,
+   0.16750352084636688,
+   0.18286460638046265,
+   0.1777515858411789,
+   0.16883637011051178,
+   0.1794431209564209,
+   0.1771475076675415
+  ]
+ },
+ "run_path": "lateral_stuck_20261108_ppo_nrdv3_V2_s81",
+ "exported_at": "2026-11-09T05:34:24",
+ "python": "/home/harry/miniconda3/envs/go2eval/bin/python",
+ "versions": {
+  "torch": "2.12.0+cu130",
+  "onnx": "1.22.0",
+  "numpy": "2.4.6"
+ },
+ "reference": {
+  "file": "/home/harry/go2_sand/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/policy.onnx",
+  "sha256": "c58a3494b22604b5aa67640ec6ebabe0c6c277d85b072dc9e76c3191e2dfdd45",
+  "is_mjlab_export": true
+ },
+ "onnx": {
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/exports/lateral_stuck_20261108_ppo_nrdv3_V2_s81_i299/policy.onnx",
+  "sha256": "1419d9722698c23a04b8805dd15f6eb25710e1f11860ffbad0cb1a63159674e9",
+  "size_bytes": 763848,
+  "opset": [
+   18
+  ],
+  "inputs": {
+   "obs": [
+    1,
+    47
+   ]
+  },
+  "outputs": {
+   "actions": [
+    1,
+    12
+   ]
+  },
+  "ops": [
+   "Sub",
+   "Div",
+   "Gemm",
+   "Elu",
+   "Gemm",
+   "Elu",
+   "Gemm",
+   "Elu",
+   "Gemm"
+  ],
+  "initializers": {
+   "obs_normalizer._mean": [
+    1,
+    47
+   ],
+   "mlp.0.weight": [
+    512,
+    47
+   ],
+   "mlp.0.bias": [
+    512
+   ],
+   "mlp.2.weight": [
+    256,
+    512
+   ],
+   "mlp.2.bias": [
+    256
+   ],
+   "mlp.4.weight": [
+    128,
+    256
+   ],
+   "mlp.4.bias": [
+    128
+   ],
+   "mlp.6.weight": [
+    12,
+    128
+   ],
+   "mlp.6.bias": [
+    12
+   ],
+   "onnx::Div_25": [
+    1,
+    47
+   ]
+  },
+  "dtypes": {
+   "obs": 1,
+   "actions": 1
+  },
+  "external_data": false,
+  "metadata": {
+   "run_path": "lateral_stuck_20261108_ppo_nrdv3_V2_s81",
+   "joint_names": "FL_hip_joint,FL_thigh_joint,FL_calf_joint,FR_hip_joint,FR_thigh_joint,FR_calf_joint,RL_hip_joint,RL_thigh_joint,RL_calf_joint,RR_hip_joint,RR_thigh_joint,RR_calf_joint",
+   "joint_stiffness": "20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000,20.000,20.000,40.000",
+   "joint_damping": "1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000,1.000,1.000,2.000",
+   "default_joint_pos": "-0.100,0.900,-1.800,0.100,0.900,-1.800,-0.100,0.900,-1.800,0.100,0.900,-1.800",
+   "command_names": "twist",
+   "observation_names": "base_ang_vel,projected_gravity,command,phase,joint_pos,joint_vel,actions",
+   "action_scale": "0.25"
+  },
+  "ir_version": 8
+ },
+ "structure": {
+  "checks": {
+   "inputs": true,
+   "outputs": true,
+   "dtypes": true,
+   "opset": true,
+   "ops": true,
+   "initializer_shapes": true,
+   "initializer_names": true,
+   "metadata_keys": true,
+   "metadata_fixed_values": true,
+   "single_file": true
+  },
+  "ok": true
+ },
+ "verification": {
+  "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+  "n_per_set": {
+   "random": 1000,
+   "realistic": 1000,
+   "recorded": 2048
+  },
+  "seed": 0,
+  "max_abs_diff": {
+   "random": 9.5367431640625e-06,
+   "random/max_abs_action": 26.584009170532227,
+   "realistic": 1.6689300537109375e-06,
+   "realistic/max_abs_action": 7.444042682647705,
+   "recorded": 1.430511474609375e-06,
+   "recorded/max_abs_action": 5.843590259552002
+  },
+  "max_onnx_vs_torch": 9.5367431640625e-06
+ },
+ "config": {
+  "file": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/exports/lateral_stuck_20261108_ppo_nrdv3_V2_s81_i299/config.yaml",
+  "template": "/home/harry/go2_sand/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml",
+  "template_sha256": "1927b1bca6077c0e86813eb7cd54f3237d5f96ebbe4a0c9afd7c4c83a82e1e63"
+ }
+}
