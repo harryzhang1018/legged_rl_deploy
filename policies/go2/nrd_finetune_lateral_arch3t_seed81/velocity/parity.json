@@ -1,0 +1,51 @@
+{
+ "folder": "/home/harry/go2_sand/results/arch_ablation_20261123_pr/ws/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_arch3t_seed81/velocity",
+ "checkpoint": {
+  "file": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3t_ctl_s81/model_299.pt",
+  "sha256": "de9d56e4a9f980d48380b127482f1437acfcfe82831e13b2472c93ecd02f4851",
+  "size_bytes": 4748057,
+  "iteration": 299,
+  "common_step_counter": null,
+  "actor_normaliser_count": 983138304,
+  "std": [
+   0.16884450614452362,
+   0.18301884829998016,
+   0.17383602261543274,
+   0.16834498941898346,
+   0.1824275255203247,
+   0.1755273938179016,
+   0.1676706224679947,
+   0.18159030377864838,
+   0.17806518077850342,
+   0.16800092160701752,
+   0.17988181114196777,
+   0.1764444261789322
+  ]
+ },
+ "shard": "/home/harry/go2_sand/nrd_data/raw/rigid_test/rigid_test_s0000.npz",
+ "rows": 4000,
+ "evaluator": "onnxruntime 1.30.0 (CPU, ORT_ENABLE_BASIC, 1 thread)",
+ "families": {
+  "difficult": 2352,
+  "nominal": 1648
+ },
+ "obs_rebuilt_vs_recorded": {
+  "base_ang_vel": 9.5367431640625e-07,
+  "projected_gravity": 8.940696716308594e-08,
+  "command": 0.0,
+  "phase": 2.2530555725097656e-05,
+  "joint_pos": 0.0,
+  "joint_vel": 0.0,
+  "last_action": 0.0
+ },
+ "max_abs": {
+  "onnx_vs_torch": 1.9073486328125e-06,
+  "deploy_vs_torch_on_recorded_obs": 6.189942359924316e-05,
+  "deploy_vs_onnx_on_recorded_obs": 6.178021430969238e-05,
+  "onnx_vs_reference_onnx": 0.9051938652992249,
+  "deploy_vs_recorded_raw": 0.9051914811134338,
+  "torch_vs_recorded_raw": 0.9051936268806458
+ },
+ "action_abs_max": 6.328511714935303,
+ "ok": true
+}

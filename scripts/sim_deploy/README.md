@@ -120,3 +120,32 @@ wrong-way slide, higher power); see each policy README for the C++ results, line
 The 2026-11-09 checks used private workspaces as above (DDS domain 47), with the
 packages under their earlier aliases `rigidcheck_V2n_s81` and `rigidcheck_E1_s131`; the ONNX bytes and parsed
 control settings are unchanged.
+
+## NRD architecture-ablation candidates
+
+Run inside the built workspace/container, as above:
+
+```bash
+export WORKSPACE=/path/to/unitree_ws
+bash "$WORKSPACE/src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh" \
+  -n 1 -p demo_final -p stress \
+  -o "$WORKSPACE/sim_results/nrd_arch_ablation_candidates" \
+  unitree_rl_mjlab="$WORKSPACE/src/legged_rl_deploy/policies/go2/unitree_rl_mjlab/velocity/config.yaml" \
+  nrd_finetune_lateral_arch3t_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_arch3t_seed81/velocity/config.yaml" \
+  nrd_finetune_lateral_arch3m_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_arch3m_seed81/velocity/config.yaml" \
+  nrd_finetune_lateral_arch1t_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_arch1t_seed81/velocity/config.yaml" \
+  nrd_finetune_lateral_arch1m_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_arch1m_seed81/velocity/config.yaml" \
+  nrd_finetune_lateral_v2n_seed81="$WORKSPACE/src/legged_rl_deploy/policies/go2/nrd_finetune_lateral_v2n_seed81/velocity/config.yaml"
+```
+
+This checks the original mjlab teacher, four experimental PPO-fine-tuned actors of the NRD architecture ablation and,
+as the reference, the V2n seed 81 actor: twelve runs total. All five actors use recipe V2 and PPO seed 81; only the
+frozen NRD differs. 3T is three transformers (core, collision, contact) and is the same NRD as V2n's; 3M replaces each
+transformer with a residual MLP; 1T and 1M are one transformer or one MLP with no contact head. All four NRDs have
+about 2.5 M parameters (within 1 % of the 3T) and use only data from the original fixed teacher. It does not rerun NRD/PPO training or the
+Chrono research evaluation. In Chrono, 1T and 1M fail the sand early-stop rule, 3M is labeled NOT_CONFIRMED, and the
+new 3T was not run on the held-out suite; see each policy README for the C++ results, lineage, Chrono evidence and
+limits. The 2026-11-19 (3M, 1T, 1M, V2n) and 2026-11-20 (3T, with its own teacher run) checks used private workspaces
+as above (DDS domain 47), with the packages under their earlier aliases `rigidcheck_abl3tctl_s81`,
+`rigidcheck_abl3m_s81`, `rigidcheck_abl1t_s81` and `rigidcheck_abl1m_s81` (V2n: `rigidcheck_abl3t_s81`); the ONNX
+bytes and parsed control settings are unchanged.
