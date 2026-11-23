@@ -64,6 +64,14 @@ policies/
 │   │   └── velocity/
 │   ├── nrd_finetune_lateral_e1_seed131/
 │   │   └── velocity/
+│   ├── nrd_finetune_lateral_arch3t_seed81/
+│   │   └── velocity/
+│   ├── nrd_finetune_lateral_arch3m_seed81/
+│   │   └── velocity/
+│   ├── nrd_finetune_lateral_arch1t_seed81/
+│   │   └── velocity/
+│   ├── nrd_finetune_lateral_arch1m_seed81/
+│   │   └── velocity/
 │   └── aba/
 │       └── velocity/
 └── g1/
@@ -231,6 +239,10 @@ They, the `gait_phase` term and `scripts/sim_deploy` are in the fork [harryzhang
 | `policies/go2/nrd_finetune_v2_seed72/velocity/config.yaml` | NRD finetune v2, PPO seed 72 | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 | `policies/go2/nrd_finetune_lateral_v2n_seed81/velocity/config.yaml` | NRD lateral finetune V2n, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 | `policies/go2/nrd_finetune_lateral_e1_seed131/velocity/config.yaml` | NRD lateral finetune E1 (4-NRD ensemble), PPO seed 131 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_arch3t_seed81/velocity/config.yaml` | NRD architecture ablation 3T, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_arch3m_seed81/velocity/config.yaml` | NRD architecture ablation 3M, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_arch1t_seed81/velocity/config.yaml` | NRD architecture ablation 1T no contact head, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
+| `policies/go2/nrd_finetune_lateral_arch1m_seed81/velocity/config.yaml` | NRD architecture ablation 1M no contact head, PPO seed 81 (experimental) | 47, with `gait_phase`; no stacked history | [-0.5, 1], [-0.5, 0.5], [-1, 1] |
 
 1. From the workspace root, clone the simulator before the `unitree_lowlevel` build. `colcon-config.sh` builds `src/unitree_mujoco/simulate`, but it does not clone it. Then get ONNX Runtime before the first `colcon build` of `legged_rl_deploy`, because CMake looks for it only at configure time:
 
@@ -265,7 +277,7 @@ Scripted evaluation, one command (no gamepad; set `use_joystick: 0` first). From
 ./src/legged_rl_deploy/scripts/sim_deploy/eval_go2_velocity.sh
 ```
 
-The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the [NRD finetune v2 candidates](scripts/sim_deploy/README.md#nrd-finetune-v2-candidates) against their mjlab initialization, use the explicit-label command there. Results and model identities are documented in each candidate's policy README. Their dynamics model was trained only on data from the original fixed teacher; the deployed actors are PPO-fine-tuned policies. The two experimental [NRD lateral finetune candidates](scripts/sim_deploy/README.md#nrd-lateral-finetune-candidates) target the lateral foot-drag stall on sand; their READMEs list their Chrono failures (falls on uneven medium sand, soft-sand wrong-way slide, higher power). They are not tested on hardware.
+The default runs `unitree_rl_mjlab`, `nrdlab_base`, and `nrdlab_finetuned` on two command profiles in a headless simulator, then writes a comparison table (`compare.md`: falls, tracking error, torque, power). To compare the [NRD finetune v2 candidates](scripts/sim_deploy/README.md#nrd-finetune-v2-candidates) against their mjlab initialization, use the explicit-label command there. Results and model identities are documented in each candidate's policy README. Their dynamics model was trained only on data from the original fixed teacher; the deployed actors are PPO-fine-tuned policies. The two experimental [NRD lateral finetune candidates](scripts/sim_deploy/README.md#nrd-lateral-finetune-candidates) target the lateral foot-drag stall on sand; their READMEs list their Chrono failures (falls on uneven medium sand, soft-sand wrong-way slide, higher power). They are not tested on hardware. The four experimental [NRD architecture-ablation candidates](scripts/sim_deploy/README.md#nrd-architecture-ablation-candidates) are PPO actors trained with the same recipe (V2, PPO seed 81) in frozen NRDs of four network designs: 3T (three transformers, the V2n NRD), 3M (three MLPs), and 1T and 1M (one transformer or one MLP, no contact head). All four pass the C++ rigid MuJoCo check, but 1T and 1M fail the Chrono sand early-stop rule; none is tested on hardware.
 
 Notes:
 

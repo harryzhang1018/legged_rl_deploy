@@ -1,0 +1,1067 @@
+{
+  "schema": "lateral_candidate_attestation_v1",
+  "candidate": "nrd_finetune_lateral_arch3m_seed81",
+  "study_pick": "abl3m_s81",
+  "release_status": "experimental_simulation_candidate",
+  "chrono_label": "NOT_CONFIRMED",
+  "chrono_label_basis": "held-out suite_v2 verdict (tag ablq1)",
+  "hardware_tested": false,
+  "packaged_onnx_sha256": "b2804cdc091e73f2f05e1638b201d7fdba616e7d3b8d4654a3334b828d902829",
+  "packaged_config_sha256": "58052f86626eccd1db16979225e2f650acd1343eca05a8532a4a76e41c5671ca",
+  "files": {
+    "checkpoint": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/model_299.pt",
+      "sha256": "4b08926a5ad3da629a904d8ec438fe4a0347aaa63d7f0b9f464098d98db1fd3e"
+    },
+    "ppo_config": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/config.json",
+      "sha256": "6d4a6498aa7369d3286fa7ae443d7916f907db899f3f9ab8555adbace052486f"
+    },
+    "ppo_recipe_record": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/recipe.json",
+      "sha256": "497ff36bf383b48118c200b35ed610e76fc63f70f34833fab16c60a114d643b9"
+    },
+    "ppo_start": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/start.json",
+      "sha256": "6cfc4049975ed1d6fe497973f318b4f80b6ce26e5a1244fca939b72ab2aee443"
+    },
+    "ppo_job": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/job_123516.json",
+      "sha256": "db83a71f7b2b2fa0f2d20504233edbdb908a4edc6605e278f9d5b4e12ce95b1f"
+    },
+    "frozen_audit": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/frozen_audit.json",
+      "sha256": "1e85f55c8658758d480e1dc7f48dba2e1e1e94b749c93dc0036d3aaf78336b60"
+    },
+    "complete": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/runs/go2ppo_3m_s81/complete.json",
+      "sha256": "33b456d3477a2ecdf40306e39ec4fa5821734c663db98be8ae6fc4d3f119c4b4"
+    },
+    "recipe": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo/code/1baaae85b223/recipes/v2.json",
+      "sha256": "162b4883c17f3416863b1981a1c9a3a2388f18830cdb5f840822721d17ac4751"
+    },
+    "export_record": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/exports/3m_s81_i299/policy_export.json",
+      "sha256": "c93e192b85a1a0dc341d873033135ea6735a389a100c1ed4d33b9d6e11514ba7"
+    },
+    "abl_export_record": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/exports/3m_s81_i299/abl_export_record.json",
+      "sha256": "6db627a9d8c8c6c5357ab4af68e2c2ffde1fcf1806a1ec0dd5042e73510e4061"
+    },
+    "onnx": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/exports/3m_s81_i299/policy.onnx",
+      "sha256": "b2804cdc091e73f2f05e1638b201d7fdba616e7d3b8d4654a3334b828d902829"
+    },
+    "source_deploy_config": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/exports/3m_s81_i299/config.yaml",
+      "sha256": "77016bbd4e81a33f4977bbdc7a476c3e030c74aa5e3e61fcee4bc864499ec85f"
+    },
+    "sim_deploy_config": {
+      "path": "/home/harry/go2_sand/results/arch_ablation_20261119_rigid_deploy/lrd/policies/go2/rigidcheck_abl3m_s81/velocity/config.yaml",
+      "sha256": "a10b4b30e4c4c0c7df56d5d1d2ddc407fa6ae13b9aea4c57fa4757e8eba8e7ec"
+    },
+    "nrd_loader": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62/export/go2_3m_s62_loader.pt",
+      "sha256": "7da4ce7b24d5adb362826a838661f83883bbf19fb727099f7794ed18f03e37ff"
+    },
+    "nrd_lineage": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62/lineage.json",
+      "sha256": "d88deae8a9bb903621b17f1b3745de996fb35faa1c70cdfe50fa00adfee910a0"
+    }
+  },
+  "lineage": {
+    "study": "arch_ablation_20261118 (Go2 sand part; PPO recipe, Chrono suites and rigid judge of lateral_stuck_20261108)",
+    "study_role": "abl3m_s81",
+    "study_role_text": "3M pick of the study (selection_rule_abl_v1: the eligible 3M policy with the lowest selection score); the only new policy that ran the held-out suite_v2",
+    "recipe": "v3_V2",
+    "recipe_sha256": "162b4883c17f3416863b1981a1c9a3a2388f18830cdb5f840822721d17ac4751",
+    "ppo_seed": 81,
+    "iterations": 300,
+    "checkpoint_iteration": 299,
+    "initialization": "unitree_rl_mjlab model_10000.pt (ONNX c58a3494...)",
+    "teacher_sha256": "7ee303f98c48044d792c884edeeedacb58142aece8af56de6f0ba58fb6c9723c",
+    "base_config_sha256": "5ceaa0bc069a258500b9dcc0524fa7662b0af78b3933788825ffb33ee8b4b93f",
+    "ood_overlay_sha256": "17d563ae2b18a0a14a6c843d399ef91da22efb16e7f2ab3e5e1d6294318e5a9f",
+    "ppo_code": {
+      "snapshot": "/home/harry/arch_ablation_20261118/go2_sand/ppo/code/1baaae85b223",
+      "digest": "1baaae85b223",
+      "commit": "365f71e5511d71d1ee790bf6f03e462a8cc0e3e9",
+      "branch": "abl/go2-ppo (local, not pushed)",
+      "note": "PPO snapshot 8e08e2544f0d (the V2n s81 code) + the architecture port; the 3T path is bit-identical to the unpatched code over 1,000 steps x 1,024 envs (POLICY_RUNBOOK.md sec. 3.1)"
+    },
+    "ppo_platform": {
+      "host": "euler17.engr.wisc.edu",
+      "gpu": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.12.0+cu130",
+      "job": "123516"
+    },
+    "v2n_s81_run": {
+      "folder": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/ppo_nrdv3/lateral_stuck_20261108_ppo_nrdv3_V2_s81",
+      "host": "euler08.engr.wisc.edu",
+      "gpu": "NVIDIA RTX A4500",
+      "torch": "2.12.0+cu130",
+      "code": "/srv/home/hzhang699/go2nrd/studies/lateral_stuck_20261108/code/ppo_nrdv3_8e08e2544f0d"
+    },
+    "ppo_config_diff_vs_v2n_s81": {
+      "lateral_v3_lineage.nrd_sha256": [
+        "501c9b8da022caf9594ad9cd7c50a7eda1e00424e5d4c9c7c8add65ee788848c",
+        "7da4ce7b24d5adb362826a838661f83883bbf19fb727099f7794ed18f03e37ff"
+      ],
+      "lateral_v3_lineage.track": [
+        "P2_ppo_nrdv3",
+        "abl_go2_ppo"
+      ],
+      "nrd.members": [
+        [
+          "/srv/home/hzhang699/go2nrd/studies/lateral_stuck_20261108/ppo_nrdv3/assets/nrd_v3_FRESH-b_loader.pt"
+        ],
+        [
+          "/srv/home/hzhang699/arch_ablation_20261118/go2_sand/ppo/assets/3m_7da4ce7b24d5_loader.pt"
+        ]
+      ]
+    },
+    "ppo_recipe_record_diff_vs_v2n_s81": {
+      "gpu": [
+        "NVIDIA RTX A4500",
+        "NVIDIA A100-SXM4-40GB"
+      ],
+      "host": [
+        "euler08.engr.wisc.edu",
+        "euler17.engr.wisc.edu"
+      ],
+      "nrd_archs": [
+        null,
+        [
+          "3m"
+        ]
+      ],
+      "nrd_command_history": [
+        null,
+        false
+      ],
+      "nrd_flag_sources": [
+        null,
+        [
+          "collision_switch"
+        ]
+      ]
+    },
+    "nrd_design": "3M",
+    "nrd_design_text": "the 3T with each of its three transformer trunks replaced by a residual MLP (width 256, 2 blocks; hidden width solved per network: core 516, collision 356, contact 356); everything else is the 3T's",
+    "nrd_parameters": 2474118,
+    "nrd_parameters_note": "2,474,118 parameters (-0.10 % of 2,476,551)",
+    "nrd_design_source": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/code/arch_ablation/ARCH_NOTES.md",
+      "sha256": "dace1473a7a8df1e221d89ed88a14b2ee504d6e6eb2e751f4901f6a5a9bc883c"
+    },
+    "nrd_label": "go2_3m_s62 (3M, seed 62)",
+    "nrd_loader": {
+      "path": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62/export/go2_3m_s62_loader.pt",
+      "sha256": "7da4ce7b24d5adb362826a838661f83883bbf19fb727099f7794ed18f03e37ff"
+    },
+    "nrd_members": [
+      "3m_7da4ce7b24d5_loader.pt"
+    ],
+    "nrd_members_sha256": [
+      "7da4ce7b24d5adb362826a838661f83883bbf19fb727099f7794ed18f03e37ff"
+    ],
+    "nrd_ensemble_mode": "single",
+    "nrd_byte_identical_to_v2n_s81_nrd": false,
+    "nrd_seed": 62,
+    "nrd_seed_selection": {
+      "rule": "seed pick = lowest G2v.P1 (validation); ties -> lower seed (reported); G2.P1 and G1 reported for all",
+      "protocol": "PROTOCOL.md Go2 milestone 1: seed pick per architecture = lowest G2v.P1 (validation stall gap, base policy in the NRD loop vs Chrono); the same rule on FRESH-a..d picks the 3T",
+      "picked": "go2_3m_s62",
+      "picked_g2v_p1": 0.31020408163265306,
+      "picked_g2_p1": 0.23282442748091603,
+      "picked_g1": "fail",
+      "seeds": {
+        "go2_3m_s61": {
+          "seed": 61,
+          "g2v_p1": 0.40816326530612246,
+          "g2_p1": 0.3015267175572519,
+          "g1": "pass"
+        },
+        "go2_3m_s62": {
+          "seed": 62,
+          "g2v_p1": 0.31020408163265306,
+          "g2_p1": 0.23282442748091603,
+          "g1": "fail"
+        },
+        "go2_3m_s63": {
+          "seed": 63,
+          "g2v_p1": 0.3346938775510204,
+          "g2_p1": 0.29389312977099236,
+          "g1": "fail"
+        },
+        "go2_3m_s64": {
+          "seed": 64,
+          "g2v_p1": 0.3142857142857143,
+          "g2_p1": 0.28625954198473286,
+          "g1": "pass"
+        }
+      },
+      "source": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/milestone1_score.json",
+        "sha256": "a7b13eea35da29bb0b3c75605728027e12c14542a5374300f925285d888a363b"
+      },
+      "picks_file": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/ppo_picks.json",
+        "sha256": "28071f4c82df7e0aa867fc80e8a00bbbe296ad307c8177ae3661fbf14fd0b986"
+      },
+      "caveat": "STUDY_REPORT.md sec. 3.3: the pooled validation gap picked the most left-biased seed in all 6 architectures, the 3T included (open user decision (d))"
+    },
+    "nrd_training_run": {
+      "folder": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62",
+      "lineage": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62/lineage.json",
+        "sha256": "d88deae8a9bb903621b17f1b3745de996fb35faa1c70cdfe50fa00adfee910a0"
+      },
+      "architecture": "core_collision_contact_residual_mlp_trunks",
+      "arch_config": {
+        "core": {
+          "tokens": 7,
+          "d": 128,
+          "hidden": 516,
+          "replaces": 793344
+        },
+        "collision": {
+          "tokens": 12,
+          "d": 128,
+          "hidden": 356,
+          "replaces": 793344
+        },
+        "contact": {
+          "tokens": 12,
+          "d": 128,
+          "hidden": 356,
+          "replaces": 793344
+        }
+      },
+      "arch_schedule": "the 3T's schedule, unchanged",
+      "updates": "reference A(12000)+B(1000)+C(500)=13500",
+      "platform": {
+        "host": "euler17.engr.wisc.edu",
+        "gpu": "NVIDIA A100-SXM4-40GB",
+        "torch": "2.12.0+cu130",
+        "job": "123466"
+      },
+      "export_check": {
+        "load": true,
+        "arch": "3m",
+        "state_frame": "world37_avg20_fused_heading_v1",
+        "n_ground_features": 3,
+        "packet_fields_equal": {
+          "model_state_dict": true,
+          "model_config": true,
+          "system": true,
+          "masks": true,
+          "update": true,
+          "arch": true,
+          "arch_config": true
+        },
+        "step_bitwise_equal_frozen": true,
+        "export": "/home/harry/arch_ablation_20261118/go2_sand/runs/a20313afe42bac7a/go2_3m_s62/export/go2_3m_s62_loader.pt",
+        "export_sha256": "7da4ce7b24d5adb362826a838661f83883bbf19fb727099f7794ed18f03e37ff",
+        "source_sha256": "88e528badd7aa7d479a96539dba5284d17f05e5ef3160727e3daa1ede13c9ad1",
+        "check_src": "/home/harry/arch_ablation_20261118/go2_sand/capsules/a20313afe42bac7a/src",
+        "foot_rule_sha256": null
+      }
+    },
+    "nrd_flag_source": {
+      "recorded": [
+        "collision_switch"
+      ],
+      "rule": "collision network switch (logit >= 0)",
+      "foot_rule_sha256": null
+    },
+    "nrd_command_history": false,
+    "nrd_frozen_sha256_before_after": [
+      "a660d6bf2585a9b17ab00f22ea818884b1c75a090578fde566c864715497b93c",
+      "a660d6bf2585a9b17ab00f22ea818884b1c75a090578fde566c864715497b93c"
+    ],
+    "nrd_training_data": "original fixed teacher only (mjlab rigid + Chrono CRM crm_prod, plus the lateral_stuck_20261108 base-teacher lateral sand data crm_lat_v2_hip / crm_lat_v2_cuda); no fine-tuned-policy trajectories. The same 4 data sources (equal source sha256), the same split manifest 9ba6dce9, mixture and forbidden TEST folder as FRESH-b, the NRD of V2n s81.",
+    "nrd_training_data_verification": {
+      "equal_to_freshb_lineage": {
+        "source_sha256": true,
+        "manifest_sha256": true,
+        "arm": true,
+        "budget": true,
+        "domains": true,
+        "domain_tree": true,
+        "forbidden_directories": true,
+        "teacher_onnx_sha256": true,
+        "recipe_sha256": true,
+        "seed": true
+      },
+      "domains": [
+        "crm",
+        "crm_lat_v2_cuda",
+        "crm_lat_v2_hip",
+        "rigid"
+      ],
+      "source_sha256": {
+        "crm": "35b73ce2d8bd1c28f7de88c92347dd6f76ee7b3c509635d900565027f24f0271",
+        "crm_lat_v2_cuda": "f1079976f3f407596714bdcf9cc7616bd162280e1e6358cc9d21e03a6b9fa7a2",
+        "crm_lat_v2_hip": "2e78115a8fef352781a6cb861bd530fd539260836152a07d155b2cabefeddf8b",
+        "rigid": "b02c0c50b185a4e3851d1e948b20ea6ba88f9402009655313310ab621806ac78"
+      },
+      "manifest_sha256": "9ba6dce9f4b7e29ad385da61d1209d71f5f7478c7863b4dba23c9519047bee4f",
+      "arm": "mixed_plus_lat_v2",
+      "domain_tree": {
+        "rigid": [
+          0.5,
+          [
+            "rigid"
+          ]
+        ],
+        "crm_half": [
+          0.5,
+          {
+            "crm_prod": [
+              0.5,
+              [
+                "crm"
+              ]
+            ],
+            "lat_v2": [
+              0.5,
+              [
+                "crm_lat_v2_hip",
+                "crm_lat_v2_cuda"
+              ]
+            ]
+          }
+        ]
+      },
+      "forbidden_directories": [
+        "lateral_stuck_20261108_crm_v2_test_hip"
+      ],
+      "freshb_lineage": {
+        "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/runs/lateral_stuck_20261108/nrd_v3/FRESH-b/lineage.json",
+        "sha256": "f9a3ce8d85a75bf5bb3b7ee77978f9ec4272f614a165907a15e1ee9c8d3270cf"
+      },
+      "base_teacher_only_lateral": {
+        "claim": "480 of 480 lateral training shards (400 HIP + 80 CUDA) record policy sha c58a3494 (base teacher); rigid and crm_prod source hashes equal the reference lineage (b02c0c50, 35b73ce2)",
+        "source": {
+          "path": "/home/harry/.t3/worktrees/nrd/study-fixed-base-mjlab-20261102/studies/lateral_stuck_20261108/nrd_v3/VERIFY.md",
+          "sha256": "6473bda70265a8a05f761c016547c01c3ffe9bac5f684c1d40c117b4677ccdfb"
+        }
+      },
+      "base_teacher_only_prior": {
+        "claim": "prior NRD training data (rigid + crm_prod): policy that made the data = base teacher only",
+        "source": {
+          "path": "/home/harry/go2_sand/results/lateral_stuck_20261108_pr_20261109/receipts/FINAL_REPORT.md",
+          "sha256": "5c01a9e7bfe5c2d8158e538e43a5d509e6cf3cc85172d82ec2ac3bc3efcac2a1"
+        }
+      }
+    },
+    "original47_actor": true,
+    "training": "PPO inside frozen NRD",
+    "final_eligible": false
+  },
+  "release_checks": {
+    "parity_sha256": "6062e513075bccfed1aff0b81e7e00cf21496066f6b42b6b0a4185204326fbae",
+    "rows": 4000,
+    "ok": true,
+    "onnx_vs_torch_max_abs": 1.7881393432617188e-06,
+    "deploy_mirror_vs_torch_max_abs": 6.872415542602539e-05,
+    "tolerance": 0.0001,
+    "parsed_config_diff_from_teacher": [
+      "policy.model_path"
+    ],
+    "parsed_config_diff_from_sim_deploy_config": [
+      "policy.model_path"
+    ],
+    "parity_log": "/home/harry/go2_sand/results/arch_ablation_20261123_pr/parity/nrd_finetune_lateral_arch3m_seed81.log",
+    "export_step_parity_max_abs": {
+      "onnx_vs_torch": 1.7881393432617188e-06,
+      "deploy_vs_torch_on_recorded_obs": 6.872415542602539e-05,
+      "deploy_vs_onnx_on_recorded_obs": 6.890296936035156e-05,
+      "onnx_vs_reference_onnx": 0.9064647555351257,
+      "deploy_vs_recorded_raw": 0.9064620137214661,
+      "torch_vs_recorded_raw": 0.9064639210700989
+    }
+  },
+  "study_results": {
+    "study_reports": [
+      {
+        "path": "/home/harry/arch_ablation_20261118/PROTOCOL.md",
+        "sha256": "1d922b07a18f4c7100dc4bb6c5fc9e527ea134b761c14191d055fe742c3ea811"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/POLICY_RUNBOOK.md",
+        "sha256": "c35ec89b1839f939bcb845ff5f08571bbcbbb7058bd4ddc272096eca9c958a94"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/STUDY_REPORT.md",
+        "sha256": "87e8072f62ca8949e150b6fbd4ee9b1b3968a69ea12b4585fac78d3951876155"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/STUDY_REPORT_ROUND2.md",
+        "sha256": "6773562a60bcf3392c3aae6969e13e400c05a6675cdfa60790031eaca95c1ae0"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/STUDY_REPORT_ROUND2_CHECK.md",
+        "sha256": "aa5345c70fe6d01ae3e44c6ce513e15526aa34e8d9e149049043afd23797e04a"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/REPORT.md",
+        "sha256": "1551b6c6a93966645e9a26602c89c6fd60aaef5d4a8e1b9f25dc89791ca735c0"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/REPORT_CHECK.md",
+        "sha256": "7efc915baa28a798aa277d116f875e1c37fc39a776ec71dc53ffc2157a869d6c"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/VERIFY.md",
+        "sha256": "723332831ecd1a428d8f0e7f10943f1a363ce80017f35d5c8d6878c61714b348"
+      },
+      {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/HEADLESS_CHECK.md",
+        "sha256": "6e2ddc5994aa73fa81008ea0a1e9dceca263c9e5eb5a42c41b543279c4774e09"
+      }
+    ],
+    "chrono_selection_suite": {
+      "suite": "Chrono CRM selection suite suite_v1: 3 soils x flat / uneven bed x 8 commands; score over the 3 realistic cells (medium flat, medium uneven, firm uneven) x repeats r0 and r2 = 6 blocks = 48 episodes; all 22 roles (base policy + 21 policies) in every one of the 18 AMD MI210 jobs (pairing rule)",
+      "tag": "ablsel1",
+      "rule": "/home/harry/arch_ablation_20261118/go2_sand/ppo_code/ppo/judge/selection_rule_abl_v1.json",
+      "rule_sha256": "49c1442d0d01b17e5c7712b6687f34fb3329f9806990f0bc5d2df705e744382f",
+      "source": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/selection_ablsel1.json",
+      "source_sha256": "1be2ff78b5206c9f90ab78b9dc02b35136aed71b9f3b558f9b4fd62ef32d65ff",
+      "table": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/selection_ablsel1.md",
+        "sha256": "5f8d9015e0897b505468bb11aa5d636d7ef2bee03833485e8883d103d36c09d3"
+      },
+      "row": {
+        "arm": "3m",
+        "score": 0.2951605421841983,
+        "sum_e1": 114.54,
+        "sum_teacher_e1": 388.06000000000006,
+        "blocks": 6,
+        "tags": [
+          "ablsel1"
+        ],
+        "early": 1,
+        "early_teacher": 2,
+        "wrong_way": 0,
+        "wrong_way_teacher": 0,
+        "excluded": [],
+        "eligible": true
+      },
+      "score_definition": "realistic E1 ratio = sum E1(policy) / sum E1(same-job base policy), E1 = failure-penalised lateral STUCK seconds; lower is better",
+      "rules": {
+        "early_terminations_le_teacher_plus_2": {
+          "value": 1,
+          "limit": 4,
+          "passed": true
+        },
+        "wrong_way_holds_le_teacher_plus_1": {
+          "value": 0,
+          "limit": 1,
+          "passed": true
+        },
+        "no_missing_realistic_repeat": {
+          "blocks": 6,
+          "required": 6,
+          "passed": true
+        }
+      },
+      "eligible": true,
+      "realistic_early_stops_by_reason": {
+        "fell": 1,
+        "left_bed": 0,
+        "diverged": 0,
+        "other": 0,
+        "source": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/aggregate_ablsel1.json",
+        "source_sha256": "2db7ee50d8ad0643dadbb5683af179eebc9fe0422f5697fc71de9f98f0ca4282",
+        "note": "counted by this script from the 'failures' list (realistic cells, all repeats); sums to row.early"
+      },
+      "architecture_seeds": {
+        "abl3m_s81": {
+          "score": 0.2951605421841983,
+          "early": 1,
+          "wrong_way": 0,
+          "eligible": true
+        },
+        "abl3m_s82": {
+          "score": 0.290882853167036,
+          "early": 7,
+          "wrong_way": 0,
+          "eligible": false
+        },
+        "abl3m_s83": {
+          "score": 0.26588671854867796,
+          "early": 5,
+          "wrong_way": 0,
+          "eligible": false
+        }
+      },
+      "pick": "pick of the 3M architecture",
+      "reference_v2n_s81_same_jobs": {
+        "role": "abl3t_s81",
+        "folder": "policies/go2/nrd_finetune_lateral_v2n_seed81/velocity",
+        "row": {
+          "arm": "3t",
+          "score": 0.2084729165592949,
+          "sum_e1": 80.89999999999999,
+          "sum_teacher_e1": 388.06000000000006,
+          "blocks": 6,
+          "tags": [
+            "ablsel1"
+          ],
+          "early": 3,
+          "early_teacher": 2,
+          "wrong_way": 0,
+          "wrong_way_teacher": 0,
+          "excluded": [],
+          "eligible": true
+        }
+      }
+    },
+    "chrono_heldout_suite_v2": {
+      "status": "run once",
+      "suite": "latstuck_v2",
+      "suite_sha256": "9f21ffc0363d8e0dc65897f1603e1b5837967097287aaeda98501f3b5c36b599",
+      "tag": "ablq1",
+      "source": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/decision_ablq1.json",
+      "source_sha256": "f6e8345fe8eed987fe7659ddf2e3f7e816a2fa99c1c4cfa8489c7340d9b9da8c",
+      "tables": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/tables_ablq1.md",
+        "sha256": "6ca9197468ab0f8b34c10859cf1e2c8f6dd29f8356bad9ac482b91709d99d8d2"
+      },
+      "episodes_sha256": "158653491cc8568f4e786a554f509cf2e2d53ff28d3996aefa961ff728da964c",
+      "release_record": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/RELEASE.json",
+        "sha256": "9321fd02c1eadb6be14105f5508b1b3399db10d0649f3b5b5f75c549a2ee5adb"
+      },
+      "roles_in_jobs": [
+        "teacher",
+        "abl3m_s81",
+        "abl3t_s81"
+      ],
+      "validity_V0": {
+        "teacher_primary_e1_s": 1040.98,
+        "planned_s": 1224.0,
+        "share": 0.8504738562091504,
+        "threshold": 0.3,
+        "valid": true
+      },
+      "verdict": "NOT_CONFIRMED",
+      "failed_gates": [
+        "G2",
+        "G3",
+        "S1"
+      ],
+      "G1_ratio": 0.3020038809583277,
+      "G1_pairs_better": 9,
+      "G1_pairs_total": 9,
+      "G1_cells": {
+        "medium/flat": 0.2728180104247533,
+        "medium/relief": 0.41982551910616817,
+        "firm/relief": 0.17829887609268763
+      },
+      "G1_pass": true,
+      "G2_e1_plus_ratio": 0.3266328037753521,
+      "G2_e1_minus_ratio": 0.2738575545491972,
+      "G2_wrong_way": {
+        "firm|+y": [
+          0,
+          0
+        ],
+        "firm|-y": [
+          0,
+          0
+        ],
+        "medium|+y": [
+          0,
+          0
+        ],
+        "medium|-y": [
+          0,
+          0
+        ],
+        "soft|+y": [
+          0,
+          0
+        ],
+        "soft|-y": [
+          14,
+          0
+        ]
+      },
+      "G2_failed_groups": [
+        "soft|-y"
+      ],
+      "G2_pass": false,
+      "G3_primary_early": [
+        17,
+        0
+      ],
+      "G3_primary_fell": [
+        4,
+        0
+      ],
+      "G3_primary_episodes": 72,
+      "G3_stress_early": [
+        18,
+        16
+      ],
+      "G3_stress_flag": false,
+      "G3_pass": false,
+      "S1_power_ratio": 1.515823919623413,
+      "S1_action_rate_ratio": 1.387475902286298,
+      "S1_pass": false,
+      "reference_v2n_s81_same_jobs": {
+        "role": "abl3t_s81",
+        "verdict": "NOT_CONFIRMED",
+        "failed_gates": [
+          "G2",
+          "G3",
+          "S1"
+        ],
+        "G1_ratio": 0.2152010605391074
+      }
+    },
+    "rigid_dev120": {
+      "suite": "fixed_base_dev120",
+      "planned": 120,
+      "tag": "ablsel1",
+      "judge": "MuJoCo rigid dev120 (rigid_check.py), paired with the same-tag base-policy run on luffy",
+      "source": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/results_ablsel1.json",
+      "source_sha256": "514e0da39c1cfa7720e479cd8624d0eb9e3d560f33849b8f2649e141b7efef94",
+      "full_source": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/rigid_results_ablsel1.json",
+        "sha256": "077a6db90856337e86d07858b4a546c59988c289e2df2b4d24f8dbb053ce4705"
+      },
+      "tables": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/results_policy/tables_ablsel1.md",
+        "sha256": "ba94646d4766a313f6f7cd039fe093aba0cebcb67e1bf539f638a6ed21a952e2"
+      },
+      "loss": 0.040825467912568324,
+      "teacher_loss": 0.0455630540412102,
+      "loss_ratio": 0.8960213219167246,
+      "ci95": [
+        0.8763371275869666,
+        0.9168616945558015
+      ],
+      "falls": 0,
+      "failures": 0,
+      "teacher_falls": 0,
+      "gate_pass": true,
+      "axis_ratio": {
+        "vx": {
+          "ratio": 1.0087493824996874,
+          "ci95": [
+            0.9737114044486739,
+            1.0462747991508017
+          ]
+        },
+        "vy": {
+          "ratio": 0.8366411587457523,
+          "ci95": [
+            0.7855501955333952,
+            0.8932639053726553
+          ]
+        },
+        "wz": {
+          "ratio": 0.8434928769406443,
+          "ci95": [
+            0.81521989388068,
+            0.8722425608986658
+          ]
+        }
+      },
+      "vy_ratio": 0.8366411587457523,
+      "vx_ratio": 1.0087493824996874,
+      "wz_ratio": 0.8434928769406443,
+      "lateral_family_loss_ratio": 0.6898393350910116,
+      "lateral_family_loss_ci95": [
+        0.6387229714731366,
+        0.7629152408719662
+      ],
+      "lateral_family_vy_ratio": 0.44582814722568753,
+      "lateral_family_vy_ci95": [
+        0.3303266270353872,
+        0.588268563246351
+      ],
+      "lateral_family_power_ratio": 1.373868509729584,
+      "family_ratios": {
+        "constant": 1.0284251051431232,
+        "lateral": 0.6898393350910116,
+        "pivot": 0.915529428961539,
+        "arc": 0.9210427209693486,
+        "vel_step": 0.9749583524933797,
+        "yaw_step": 0.9151999620397759,
+        "weave": 0.9283603859376002,
+        "stop_and_go": 1.089838661330244,
+        "random": 0.6765750152360571,
+        "random_walk": 0.9797249568002938
+      },
+      "power_ratio": 1.230037889811713,
+      "power_ci95": [
+        1.206145747000259,
+        1.2563567973450671
+      ],
+      "target_rate_ratio": 1.1320551763885556,
+      "target_rate_ci95": [
+        1.1228031815235648,
+        1.1414425765065297
+      ],
+      "action_rate_ratio": 1.1320551763885556,
+      "peak_torque_ratio": 1.025172140495233,
+      "gates_v1": {
+        "G1": true,
+        "G2": "unresolved_insufficient_n",
+        "G3": false,
+        "G3_failed": [
+          "extra/mech_power_w"
+        ]
+      },
+      "reference_v2n_s81_same_tag": {
+        "role": "abl3t_s81",
+        "loss_ratio": 0.8544114405114939,
+        "ci95": [
+          0.8357868734147132,
+          0.8736499780077748
+        ],
+        "power_ratio": 1.2174067735562322
+      }
+    },
+    "real_robot_indicators_rigid": {
+      "what": "real-robot indicators named by the user (PROTOCOL Changes 2026-11-19 17:15 item 3): mechanical power and lower-leg swing lift higher than the base policy's; at most a necessary sign (the V2 reward asks for a swing peak of 80 mm)",
+      "setup": "MuJoCo rigid dev120, the stored judge traces of tag ablsel1 (120 paths; 112 for swing peak and calf lift), ratio of means [95 % path bootstrap]",
+      "source": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/lift_metrics.json",
+      "source_sha256": "4cd4f7ac1fef5ea737c4fbcf720fd14bb614c4bb4d14dcd98098ed7d823918f2",
+      "report": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/lift_metrics.md",
+        "sha256": "2275494dd453d03adec288c3c360ae9f05df11cb251de589ac1f27a32bb3e87d"
+      },
+      "power_x_base": {
+        "ratio": 1.2300379349917858,
+        "ci95": [
+          1.2061457906544302,
+          1.2563570777487125
+        ],
+        "value": 22.99811110832038,
+        "base": 18.69707466255824,
+        "n": 120
+      },
+      "foot_swing_peak_x_base": {
+        "ratio": 1.4206207501200656,
+        "ci95": [
+          1.3917001722996136,
+          1.4506635956417853
+        ],
+        "value": 66.93339375386599,
+        "base": 47.115596297047624,
+        "n": 112
+      },
+      "calf_lift_x_base": {
+        "ratio": 1.3804526816544853,
+        "ci95": [
+          1.3547974031506707,
+          1.4062953857870077
+        ],
+        "value": 48.296529137856695,
+        "base": 34.98600841571249,
+        "n": 112
+      },
+      "drift_mmps": {
+        "sign": "+ = to the robot's left",
+        "zero_lateral_command": {
+          "n": 84,
+          "mean": 7.339709819317637,
+          "ci95": [
+            4.0946454354348,
+            10.403514817821396
+          ]
+        },
+        "all_paths": {
+          "n": 120,
+          "mean": 4.435234424529242,
+          "ci95": [
+            1.2018470016515495,
+            7.633823557238707
+          ]
+        },
+        "straight_paths": {
+          "n": 37,
+          "mean": 7.270431315407339,
+          "ci95": [
+            4.824358972384204,
+            9.746020104030622
+          ]
+        },
+        "minus_base_zero_lateral_command": {
+          "n": 84,
+          "mean": -0.23912619829835635,
+          "ci95": [
+            -2.1972331962377254,
+            1.7305887215847915
+          ]
+        }
+      },
+      "lateral_speed_over_command": {
+        "plus_y": 0.888650436322093,
+        "minus_y": 0.936232676656121
+      },
+      "falls": 0,
+      "both_indicators_higher_than_base": true,
+      "reference_v2n_s81": {
+        "role": "abl3t_s81",
+        "power_x_base": 1.2174066164918338,
+        "foot_swing_peak_x_base": 1.3978633686486104,
+        "calf_lift_x_base": 1.363110321835255
+      }
+    },
+    "real_robot_indicators_deploy_stack": {
+      "setup": "C++ deploy stack (legged_rl_deploy + unitree_mujoco), flat rigid ground, 1 run per profile",
+      "source": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/deploy/deploy_metrics.json",
+      "source_sha256": "729da5e77f46b24294ad599e6bc9d284a25d3494723d22dfede972349af1926d",
+      "demo_final": {
+        "power_x_base": 1.223062217642956,
+        "power_w": 22.60896931639555,
+        "base_power_w": 18.485543082155534,
+        "foot_swing_peak_x_base": 1.3437077464233238,
+        "foot_swing_peak_mm": 64.30629368971765,
+        "calf_lift_x_base": 1.3047559713899937,
+        "drift_mmps": {
+          "zero_lateral_moving": 5.026857467697799,
+          "straight": 1.6843553691078395,
+          "base": {
+            "zero_lateral_moving": 4.88635893439707,
+            "straight": 4.223843537500796
+          }
+        },
+        "both_indicators_higher": true,
+        "passed": true,
+        "lateral_segments": {
+          "segment/lateral_+0.5": {
+            "vy_ratio": 0.6838868856574927,
+            "vy_ratio_base": 0.538071472049385
+          },
+          "segment/lateral_-0.5": {
+            "vy_ratio": 0.7955087552805553,
+            "vy_ratio_base": 0.5601523324213168
+          }
+        }
+      },
+      "stress": {
+        "power_x_base": 1.1219794863326729,
+        "power_w": 33.49546422431686,
+        "base_power_w": 29.85390074626131,
+        "foot_swing_peak_x_base": 1.246307818224064,
+        "foot_swing_peak_mm": 68.43157401662796,
+        "calf_lift_x_base": 1.201829997636582,
+        "drift_mmps": {
+          "zero_lateral_moving": -8.423498718337708,
+          "straight": 8.231454325772422,
+          "base": {
+            "zero_lateral_moving": -12.52345141618744,
+            "straight": 5.781696510346192
+          }
+        },
+        "both_indicators_higher": true,
+        "passed": true,
+        "lateral_segments": {
+          "segment/diagonal": {
+            "vy_ratio": 0.7235613093077211,
+            "vy_ratio_base": 0.6372671801394181
+          },
+          "segment/lat-+turn+": {
+            "vy_ratio": 0.7803961072701283,
+            "vy_ratio_base": 0.5804379005821324
+          }
+        }
+      },
+      "base_reference": "the same-job base-policy run (unitree_rl_mjlab) of the 2026-11-19 job"
+    },
+    "videos": {
+      "readme": {
+        "path": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/videos5/README.txt",
+        "sha256": "c1138ee05066961bc0d643df9a684481018169b426cd11ada06e9acf23ee3333"
+      },
+      "note": "MuJoCo replays of the C++ deploy demo_final run (flat rigid ground); not sand, not the real robot"
+    }
+  },
+  "sim_deploy": {
+    "scope": "One repeat per profile on flat go2/scene.xml; simulation deployment check, not hardware qualification",
+    "job": "2026-11-19 job: base policy + abl3t/3m/1t/1m s81-83 (the same job as V2n s81 = abl3t_s81)",
+    "tag": "arch-ablation-20261119",
+    "created": "2026-11-19T18:51:19-06:00",
+    "source": "/home/harry/arch_ablation_20261118/go2_sand/mujoco_rigid/deploy/deploy_results.json",
+    "source_sha256": "f6c1d2b64623ef90f08cc194e835736a8bdfd300528c5dd3fe239de8a394c05a",
+    "compare_md": {
+      "path": "/home/harry/go2_sand/results/arch_ablation_20261119_rigid_deploy/deploy/compare.md",
+      "sha256": "9f3289a0e966953b8e17d97bae526ebb61a2b48d6e92052026f31dbd6c6fcfd3"
+    },
+    "workspace": "private",
+    "dds_domain": 47,
+    "container": "unitree_ws_go2sand",
+    "container_image": "sha256:73f7d58ca50b65d7d624772161ce700cd9589910c4e102414c65a57b94be5c7c",
+    "legged_rl_deploy_head": "696baed70af09aa6577b882294e2bb70d5ff78e0",
+    "runner_patch": "simulator cwd dirname(SIM_BIN) -> private WORKSPACE (as in the 2026-11-03 PR #2 check)",
+    "binary_sha256": {
+      "/home/harry/go2_sand/unitree_ws/install/legged_rl_deploy/lib/legged_rl_deploy/legged_rl_deploy_node": "04cc02649799e9681d7891ae734a3fbab1e3ff54e4f8b789f4ffebda0ed322c6",
+      "/home/harry/go2_sand/unitree_ws/src/unitree_mujoco/simulate/build/unitree_mujoco": "5c05826ed8ea6300a69ea3a1db8f4a47fa4d06905b7a90d6330d8736a3b29445"
+    },
+    "binaries_unchanged": true,
+    "gates": {
+      "D1_no_fall_completed": true,
+      "D2_finite": true,
+      "D3_no_command_warnings": true,
+      "D4_parity_4000": true,
+      "D5_rtf_and_config": true,
+      "all_pass": true
+    },
+    "teacher_checks": {
+      "D1_no_fall_completed": true,
+      "D2_finite": true,
+      "D3_no_command_warnings": true,
+      "D5_rtf": true,
+      "all_runs_pass": true
+    },
+    "candidate": {
+      "demo_final": {
+        "summary_sha256": "e44ba25183f3100ea748909b92a28c5a1fcdd786c2970d1026c45038d43195d5",
+        "driver_plan_sha256": "c6b10f4a7e45d9f06dd59b42437a8ecc8789baea8dbc8b468ed3989747fccf2e",
+        "fell": false,
+        "completed": true,
+        "rtf": 1.0000269076638881,
+        "mae_vx_vy_wz": [
+          0.07632472180842914,
+          0.04234847236270253,
+          0.12486383605495907
+        ],
+        "power_w": 22.60896931639555,
+        "target_rate": 1.6309722875693748,
+        "max_tilt_deg": 5.375201379717802,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      },
+      "stress": {
+        "summary_sha256": "0a6c25db518cbf37ac370935daf6f45c26a97c244681f5e8dc55892d3559aca2",
+        "driver_plan_sha256": "bc93ee70557cda977bb1aa6c6a76f368515ae2fdc1af9de294dae912d9990982",
+        "fell": false,
+        "completed": true,
+        "rtf": 0.9999989237455571,
+        "mae_vx_vy_wz": [
+          0.08674882194100428,
+          0.05629592041504125,
+          0.1326350895867853
+        ],
+        "power_w": 33.49546422431686,
+        "target_rate": 1.8679725503647124,
+        "max_tilt_deg": 5.668424626135116,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      }
+    },
+    "teacher": {
+      "demo_final": {
+        "summary_sha256": "787c481402303fe98604684b3e8bff385e1b8bb4fd2a6b2d344b3be0c98a61a5",
+        "driver_plan_sha256": "c15e6e305da182b5b42d9e6da11a8c1aae81f45cc86d85e433da6292468e95f0",
+        "fell": false,
+        "completed": true,
+        "rtf": 1.0000571476717555,
+        "mae_vx_vy_wz": [
+          0.08232692248278835,
+          0.059255906839587265,
+          0.1251195946301894
+        ],
+        "power_w": 18.485543082155534,
+        "target_rate": 1.4704337133578316,
+        "max_tilt_deg": 3.46471079449061,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      },
+      "stress": {
+        "summary_sha256": "e70f56b0b228d322c3273ed45ceb76c8283afbba3eac7657e1731cca12cd8406",
+        "driver_plan_sha256": "18a6f8f980804b806543d5674378a65cea5f5aca63ab862822de2caa5501a469",
+        "fell": false,
+        "completed": true,
+        "rtf": 1.00004850288156,
+        "mae_vx_vy_wz": [
+          0.09692100040233438,
+          0.07346485760585865,
+          0.14351470713742048
+        ],
+        "power_w": 29.85390074626131,
+        "target_rate": 1.7417141219510253,
+        "max_tilt_deg": 6.432674193514787,
+        "command_warnings": 0,
+        "nonfinite_policy_outputs": 0,
+        "model_sha_ok": true
+      }
+    },
+    "shared_files_unchanged": true,
+    "original_checkouts_unchanged": true,
+    "raw_evidence_root": "/home/harry/go2_sand/results/arch_ablation_20261119_rigid_deploy",
+    "tested_package_alias": "rigidcheck_abl3m_s81",
+    "reference_v2n_s81_same_job": {
+      "role": "abl3t_s81",
+      "folder": "policies/go2/nrd_finetune_lateral_v2n_seed81/velocity",
+      "onnx_sha256": "1419d9722698c23a04b8805dd15f6eb25710e1f11860ffbad0cb1a63159674e9",
+      "gates": {
+        "D1_no_fall_completed": true,
+        "D2_finite": true,
+        "D3_no_command_warnings": true,
+        "D4_parity_4000": true,
+        "D5_rtf_and_config": true,
+        "all_pass": true
+      },
+      "runs": {
+        "demo_final": {
+          "summary_sha256": "d0132c0570da5626f26d120cf29b33cb11fe48af4d3cc8d71b699b60b3b51e58",
+          "driver_plan_sha256": "b370b8e384ead291a6abd092d4caf5f28a7da8379e39b545a39cdb2ce869a985",
+          "fell": false,
+          "completed": true,
+          "rtf": 0.9999785950670915,
+          "mae_vx_vy_wz": [
+            0.0696432353164663,
+            0.04084016909834413,
+            0.12000475745936404
+          ],
+          "power_w": 22.51756099502511,
+          "target_rate": 1.6127448221602312,
+          "max_tilt_deg": 5.380821161075532,
+          "command_warnings": 0,
+          "nonfinite_policy_outputs": 0,
+          "model_sha_ok": true
+        },
+        "stress": {
+          "summary_sha256": "c7f6b8af156c4acfd81bfac32e90b37be2509a78ab2c953ef041ad3de180b107",
+          "driver_plan_sha256": "8d66641fabdac7615226a0dbc2b55fd208ad59fb76ee3be6b4095d6da324487f",
+          "fell": false,
+          "completed": true,
+          "rtf": 0.9999905218949455,
+          "mae_vx_vy_wz": [
+            0.07796523737405413,
+            0.05124350678366588,
+            0.13444903757851867
+          ],
+          "power_w": 34.3857661878517,
+          "target_rate": 1.8921476520226166,
+          "max_tilt_deg": 6.917933667413902,
+          "command_warnings": 0,
+          "nonfinite_policy_outputs": 0,
+          "model_sha_ok": true
+        }
+      }
+    }
+  },
+  "package_rename": {
+    "date": "2026-11-23",
+    "from": "rigidcheck_abl3m_s81",
+    "to": "nrd_finetune_lateral_arch3m_seed81",
+    "onnx_bytes_unchanged": true,
+    "control_settings_unchanged": true,
+    "full_sim_deploy_results_preserved_under_original_alias": true,
+    "fresh_parity_rows": 4000
+  }
+}
